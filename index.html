@@ -1393,11 +1393,20 @@ function exportPDF() {
     }
   });
 
-  // Pegar título e nome do hospital
+  // Pegar título, hospital e dados do coordenador
   const titleEl = document.querySelector(".title");
   const hospitalEl = document.querySelector(".hospital-name");
+  const sigNameEl = document.querySelector(".signature-name");
+  const sigLabelEl = document.querySelector(".signature-label");
+
   const titleRaw = (titleEl?.innerText || "Escala Médica").trim();
   const hospitalRaw = (hospitalEl?.innerText || "").trim();
+
+  // Pega nome do coordenador (ignorando zero-width chars do contenteditable)
+  const coordName = (sigNameEl?.innerText || "")
+    .replace(/[\u200B-\u200D\uFEFF]/g, "")
+    .trim();
+  const coordLabel = (sigLabelEl?.innerText || "").trim();
 
   // Sanitizar para nome de arquivo
   const titleText = titleRaw
@@ -1416,7 +1425,8 @@ function exportPDF() {
     m: parseInt(monthSelect.value),
     y: parseInt(yearSelect.value),
     docs: medicos,
-    s: scheduleData
+    s: scheduleData,
+    c: coordName ? { n: coordName, l: coordLabel } : null
   };
 
   // Codificar em base64 + delimitadores únicos para extração confiável
@@ -1490,10 +1500,16 @@ function showImportModal(payload) {
   const totalAtribs = payload.s.filter(x => x.v !== "__B__").length;
   const totalBloq = payload.s.filter(x => x.v === "__B__").length;
 
+  let coordLine = "";
+  if (payload.c && payload.c.n) {
+    coordLine = `<div><strong>Coordenador:</strong> ${payload.c.n}${payload.c.l ? " · " + payload.c.l : ""}</div>`;
+  }
+
   meta.innerHTML = `
     <div><strong>Origem:</strong> ${payload.t || "Escala"} — ${monthName} / ${payload.y}</div>
     <div><strong>Médicos:</strong> ${payload.docs.length} (${payload.docs.join(", ") || "—"})</div>
     <div><strong>Plantões registrados:</strong> ${totalAtribs} atribuídos · ${totalBloq} bloqueados</div>
+    ${coordLine}
     <div><strong>Aplicar em:</strong> ${months[parseInt(monthSelect.value)]} / ${yearSelect.value}</div>
   `;
 
@@ -1515,6 +1531,23 @@ function applyImport() {
   payload.docs.forEach(doc => {
     if (doc && !medicos.includes(doc)) medicos.push(doc);
   });
+
+  // 1b. Importar dados do coordenador (apenas se os campos atuais estão vazios)
+  if (payload.c && payload.c.n) {
+    const sigNameEl = document.querySelector(".signature-name");
+    const sigLabelEl = document.querySelector(".signature-label");
+
+    const currentName = (sigNameEl?.innerText || "")
+      .replace(/[\u200B-\u200D\uFEFF\s]/g, "");
+
+    if (sigNameEl && currentName.length === 0) {
+      sigNameEl.innerText = payload.c.n;
+      if (sigLabelEl && payload.c.l) {
+        sigLabelEl.innerText = payload.c.l;
+      }
+      updateSignatureState();
+    }
+  }
 
   // 2. Construir índice da escala antiga
   const oldMonth = payload.m;
