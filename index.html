@@ -1532,6 +1532,16 @@ function applyImport() {
     if (doc && !medicos.includes(doc)) medicos.push(doc);
   });
 
+  // 1a. Restaurar título e hospital (sempre - são parte da identidade da escala)
+  if (payload.t) {
+    const titleEl = document.querySelector(".title");
+    if (titleEl) titleEl.innerText = payload.t;
+  }
+  if (payload.h) {
+    const hospitalEl = document.querySelector(".hospital-name");
+    if (hospitalEl) hospitalEl.innerText = payload.h;
+  }
+
   // 1b. Importar dados do coordenador (apenas se os campos atuais estão vazios)
   if (payload.c && payload.c.n) {
     const sigNameEl = document.querySelector(".signature-name");
