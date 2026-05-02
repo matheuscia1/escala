@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="gray">
+<head>
+<meta charset="UTF-8">
+<title>Escala Médica</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ==================== TEMA CINZA (PADRÃO) ==================== */
+:root,
+[data-theme="gray"] {
+  --bg: #f5f6f8;
+  --bg-soft: #eceef2;
+  --paper: #ffffff;
+  --ink: #1f2937;
+  --ink-soft: #4b5563;
+  --ink-muted: #9ca3af;
+  --line: #e2e5ea;
+  --line-soft: #eef0f3;
+  --accent: #4b5563;
+  --accent-deep: #1f2937;
+  --accent-soft: #e5e7eb;
+  --weekend: #f0f1f4;
+  --day-color: #374151;
+  --block-stripe: rgba(75, 85, 99, 0.18);
+  --shift: #374151;
+  --shift-soft: #e5e7eb;
+}
+
+/* ==================== TEMA AZUL ==================== */
+[data-theme="blue"] {
+  --bg: #f0f4f8;
+  --bg-soft: #e3ecf4;
+  --paper: #ffffff;
+  --ink: #0f2840;
+  --ink-soft: #355068;
+  --ink-muted: #7a8fa3;
+  --line: #d4dfeb;
+  --line-soft: #e8eef5;
+  --accent: #0a6cb8;
+  --accent-deep: #074d83;
+  --accent-soft: #dceaf7;
+  --weekend: #eaf2fa;
+  --day-color: #0a6cb8;
+  --block-stripe: rgba(10, 108, 184, 0.16);
+  --shift: #0d7a5f;
+  --shift-soft: #d6ebe3;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+body { display: flex; min-height: 100vh; }
+
+/* ==================== SIDEBAR ==================== */
+.sidebar {
+  width: 260px;
+  background: var(--paper);
+  border-right: 1px solid var(--line);
+  padding: 22px 18px;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.sidebar h3 {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 14px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.count-badge {
+  background: var(--bg-soft);
+  color: var(--ink-soft);
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.sidebar input[type="text"] {
+  padding: 9px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--ink);
+  transition: all 0.15s ease;
+}
+
+.sidebar input[type="text"]:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.btn-add {
+  padding: 9px 12px;
+  border-radius: 6px;
+  border: none;
+  background: var(--accent);
+  color: white;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 0.15s ease;
+}
+
+.btn-add:hover { background: var(--accent-deep); }
+
+.sidebar-list {
+  margin-top: 4px;
+  overflow-y: auto;
+  flex: 1;
+  margin-right: -8px;
+  padding-right: 8px;
+}
+
+.sidebar-list::-webkit-scrollbar { width: 6px; }
+.sidebar-list::-webkit-scrollbar-track { background: transparent; }
+.sidebar-list::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+
+.medico-item {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  transition: all 0.15s ease;
+}
+
+.medico-item:hover { border-color: var(--ink-muted); }
+
+.medico-name {
+  flex: 1;
+  font-weight: 500;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.medico-count {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  color: var(--ink-muted);
+  background: var(--bg-soft);
+  padding: 2px 6px;
+  border-radius: 10px;
+  margin-right: 6px;
+  min-width: 22px;
+  text-align: center;
+}
+
+.btn-remove {
+  background: transparent;
+  border: none;
+  color: var(--ink-muted);
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  padding: 0;
+  transition: all 0.15s ease;
+  line-height: 1;
+}
+
+.btn-remove:hover {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 24px 12px;
+  color: var(--ink-muted);
+  font-size: 12px;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+}
+
+/* THEME SWITCH */
+.theme-switch {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-soft);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.theme-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted);
+}
+
+.switch {
+  position: relative;
+  width: 64px;
+  height: 26px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.switch::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background: var(--accent);
+  border-radius: 50%;
+  transition: transform 0.25s cubic-bezier(.34,1.4,.64,1);
+}
+
+[data-theme="blue"] .switch::before {
+  transform: translateX(38px);
+}
+
+.switch-icons {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px;
+  pointer-events: none;
+}
+
+.switch-icons span {
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  font-size: 9px;
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 600;
+  color: var(--ink-muted);
+  transition: color 0.2s;
+}
+
+[data-theme="gray"] .switch-icons span:first-child { color: white; }
+[data-theme="blue"] .switch-icons span:last-child { color: white; }
+
+/* ==================== MAIN ==================== */
+.container {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 36px 50px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.hospital-name {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+  outline: none;
+  cursor: text;
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px dashed transparent;
+  transition: all 0.15s ease;
+  display: inline-block;
+}
+
+.hospital-name:hover {
+  border-color: var(--line);
+  background: var(--paper);
+}
+
+.hospital-name:focus {
+  border-color: var(--accent);
+  background: var(--paper);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.title {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  outline: none;
+  cursor: text;
+  padding: 4px 10px;
+  border-radius: 5px;
+  border: 1px dashed transparent;
+  transition: all 0.15s ease;
+  display: inline-block;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.title:hover {
+  border-color: var(--line);
+  background: var(--paper);
+}
+
+.title:focus {
+  border-color: var(--accent);
+  background: var(--paper);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.month-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  color: var(--ink-muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+.month-label strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.select-wrap { position: relative; }
+
+.select-wrap::after {
+  content: '▾';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  color: var(--ink-muted);
+  pointer-events: none;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 8px 30px 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+select:hover { border-color: var(--ink-muted); }
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.btn-pdf {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: white;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transition: all 0.15s ease;
+}
+
+.btn-pdf:hover {
+  background: var(--accent-deep);
+  border-color: var(--accent-deep);
+}
+
+.btn-pdf svg { width: 13px; height: 13px; }
+
+.legend {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 14px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-swatch {
+  width: 13px;
+  height: 13px;
+  border-radius: 3px;
+  border: 1px solid var(--line);
+}
+
+.legend-swatch.weekend { background: var(--weekend); }
+.legend-swatch.blocked-sw {
+  background-image: repeating-linear-gradient(45deg, var(--block-stripe), var(--block-stripe) 3px, transparent 3px, transparent 6px);
+  background-color: var(--paper);
+}
+.legend-swatch.assigned { background: var(--shift-soft); border-color: var(--shift); }
+
+.calendar-wrap {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+thead th {
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--line);
+  padding: 10px 6px;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+thead th:not(:last-child) { border-right: 1px solid var(--line-soft); }
+
+tbody td {
+  border-right: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+  height: 88px;
+  position: relative;
+  padding: 6px;
+  vertical-align: top;
+  background: var(--paper);
+  transition: background 0.15s ease;
+}
+
+tbody tr:last-child td { border-bottom: none; }
+tbody td:last-child { border-right: none; }
+
+tbody td.empty {
+  background: var(--bg-soft);
+}
+
+.day {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  color: var(--day-color);
+  font-weight: 600;
+  font-size: 14px;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+.weekend { background-color: var(--weekend); }
+
+.today {
+  box-shadow: inset 0 0 0 2px var(--accent);
+}
+
+.today .day::after {
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-left: 4px;
+  vertical-align: middle;
+  margin-bottom: 2px;
+}
+
+.cell-select {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 5px 8px;
+  border-radius: 5px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  font-family: inherit;
+  font-size: 11.5px;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.cell-select:hover {
+  border-color: var(--ink-muted);
+}
+
+.cell-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+
+td.assigned { background: var(--shift-soft); }
+
+td.assigned .cell-select {
+  background: var(--paper);
+  border-color: var(--shift);
+  color: var(--shift);
+  font-weight: 600;
+}
+
+td.weekend.assigned { background: var(--shift-soft); }
+
+td.blocked {
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--block-stripe),
+    var(--block-stripe) 4px,
+    transparent 4px,
+    transparent 9px
+  );
+}
+
+td.weekend.blocked {
+  background-color: var(--weekend);
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--block-stripe),
+    var(--block-stripe) 4px,
+    transparent 4px,
+    transparent 9px
+  );
+}
+
+td.blocked .cell-select {
+  background: var(--paper);
+  color: var(--accent-deep);
+  border-color: var(--accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+
+td:hover:not(.empty) {
+  background-color: var(--line-soft);
+}
+
+td.weekend:hover:not(.empty) {
+  filter: brightness(0.97);
+}
+
+td.blocked:hover:not(.empty) { filter: brightness(0.97); }
+
+/* ==================== ASSINATURA ==================== */
+.signature {
+  margin-top: 80px;
+  max-width: 320px;
+  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.signature-line {
+  border-top: 1px solid var(--ink-soft);
+  margin-bottom: 6px;
+  width: 100%;
+  align-self: stretch;
+}
+
+.signature-name {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  outline: none;
+  cursor: text;
+  padding: 3px 8px;
+  margin-left: -8px;
+  border-radius: 4px;
+  border: 1px dashed transparent;
+  transition: all 0.15s ease;
+  min-height: 22px;
+  min-width: 200px;
+  display: block;
+  margin-bottom: 2px;
+  width: fit-content;
+  max-width: 100%;
+  word-break: break-word;
+}
+
+.signature-name:empty::before,
+.signature-name[data-empty="true"]::before {
+  content: attr(data-placeholder);
+  color: var(--ink-muted);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.signature-name:hover {
+  border-color: var(--line);
+  background: var(--paper);
+}
+
+.signature-name:focus {
+  border-color: var(--accent);
+  background: var(--paper);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.signature-name:focus[data-empty="true"]::before {
+  content: '';
+}
+
+.signature-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-muted);
+  outline: none;
+  cursor: text;
+  padding: 2px 8px;
+  margin-left: -8px;
+  border-radius: 4px;
+  border: 1px dashed transparent;
+  transition: all 0.15s ease;
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  word-break: break-word;
+}
+
+.signature-label:hover {
+  border-color: var(--line);
+  background: var(--paper);
+}
+
+.signature-label:focus {
+  border-color: var(--accent);
+  background: var(--paper);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* ==================== PRINT ==================== */
+.print-text { display: none; }
+
+@media print {
+  @page { size: A4 landscape; margin: 10mm; }
+  html, body { background: white !important; }
+  body { display: block; }
+  .sidebar, .controls { display: none !important; }
+  .container { max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
+  .header { margin-bottom: 12px; }
+  .title {
+    font-size: 22px !important;
+    border: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  .hospital-name {
+    font-size: 11px !important;
+    border: none !important;
+    background: transparent !important;
+  }
+  .month-label { font-size: 10px !important; }
+  .legend { margin-bottom: 8px; }
+  .calendar-wrap { border: 1px solid #999 !important; page-break-inside: avoid; }
+  thead th {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  tbody td {
+    height: 76px !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .cell-select { display: none !important; }
+  .print-text {
+    display: block;
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--shift);
+    line-height: 1.2;
+    word-break: break-word;
+  }
+  .print-text.is-block {
+    color: var(--accent-deep);
+    text-transform: uppercase;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+  }
+  td.weekend, td.assigned, td.blocked, td.empty {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .today { box-shadow: inset 0 0 0 1.5px var(--accent) !important; }
+
+  /* Assinatura no PDF */
+  .signature {
+    margin-top: 35px !important;
+    page-break-inside: avoid;
+  }
+
+  .signature-name,
+  .signature-label {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin-left: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* Esconde o bloco inteiro quando o nome está vazio */
+  .signature[data-hidden="true"] {
+    display: none !important;
+  }
+
+  /* Esconde placeholders na impressão */
+  .signature-name:empty::before,
+  .signature-name[data-empty="true"]::before {
+    content: '' !important;
+  }
+}
+
+@media (max-width: 900px) {
+  body { flex-direction: column; }
+  .sidebar { width: 100%; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--line); }
+  .container { padding: 22px 16px; }
+  tbody td { height: 76px; }
+}
+</style>
+</head>
+
+<body>
+
+<aside class="sidebar">
+  <h3>
+    <span>Médicos</span>
+    <span class="count-badge" id="counter">0</span>
+  </h3>
+
+  <div class="input-group">
+    <input type="text" id="medicoInput" placeholder="Nome do médico" onkeydown="if(event.key==='Enter')addMedico()">
+    <button class="btn-add" onclick="addMedico()">Adicionar</button>
+  </div>
+
+  <div class="sidebar-list" id="listaMedicos"></div>
+
+  <div class="theme-switch">
+    <span class="theme-label">Tema</span>
+    <div class="switch" onclick="toggleTheme()" title="Alternar entre cinza e azul" role="switch" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' ')toggleTheme()">
+      <div class="switch-icons">
+        <span>CZ</span>
+        <span>AZ</span>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<main class="container" id="area">
+
+  <header class="header">
+    <div class="hospital-name" contenteditable="true" spellcheck="false">Hospital Regional de Estância</div>
+    <h1 class="title" contenteditable="true" spellcheck="false">Escala Médica</h1>
+    <div class="month-label" id="monthLabel"></div>
+  </header>
+
+  <div class="controls">
+    <div class="select-wrap">
+      <select id="monthSelect"></select>
+    </div>
+    <div class="select-wrap">
+      <select id="yearSelect"></select>
+    </div>
+    <button class="btn-pdf" onclick="exportPDF()" title="Abre o diálogo de impressão — escolha 'Salvar como PDF'">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 9V2h12v7"/>
+        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+        <rect x="6" y="14" width="12" height="8"/>
+      </svg>
+      Imprimir / PDF
+    </button>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-swatch assigned"></div> Plantão atribuído</div>
+    <div class="legend-item"><div class="legend-swatch weekend"></div> Fim de semana</div>
+    <div class="legend-item"><div class="legend-swatch blocked-sw"></div> Bloqueado</div>
+  </div>
+
+  <div class="calendar-wrap">
+    <table id="calendar">
+      <thead>
+        <tr>
+          <th>Seg</th><th>Ter</th><th>Qua</th>
+          <th>Qui</th><th>Sex</th>
+          <th>Sáb</th><th>Dom</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- Assinatura do coordenador -->
+  <div class="signature" id="signatureBlock">
+    <div class="signature-line"></div>
+    <div class="signature-name" contenteditable="true" spellcheck="false" data-placeholder="Nome do coordenador" oninput="updateSignatureState()">​</div>
+    <div class="signature-label" contenteditable="true" spellcheck="false" data-placeholder="Cargo / função (ex: Coordenador médico)">Coordenador médico</div>
+  </div>
+</main>
+
+<script>
+let medicos = [];
+const BLOCK = "__BLOCK__";
+
+const months = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho",
+"Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
+
+const monthSelect = document.getElementById("monthSelect");
+const yearSelect = document.getElementById("yearSelect");
+
+months.forEach((m, i) => {
+  monthSelect.innerHTML += `<option value="${i}">${m}</option>`;
+});
+
+const currentYear = new Date().getFullYear();
+for (let y = currentYear - 1; y <= currentYear + 5; y++) {
+  yearSelect.innerHTML += `<option value="${y}">${y}</option>`;
+}
+
+monthSelect.value = new Date().getMonth();
+yearSelect.value = currentYear;
+
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute("data-theme");
+  html.setAttribute("data-theme", current === "blue" ? "gray" : "blue");
+}
+
+function countShifts(name) {
+  let c = 0;
+  document.querySelectorAll(".cell-select").forEach(s => { if (s.value === name) c++; });
+  return c;
+}
+
+function renderMedicos() {
+  const div = document.getElementById("listaMedicos");
+  document.getElementById("counter").innerText = medicos.length;
+
+  if (medicos.length === 0) {
+    div.innerHTML = '<div class="empty-state">Adicione médicos para montar a escala</div>';
+    generateCalendar();
+    return;
+  }
+
+  div.innerHTML = "";
+  medicos.forEach((m, i) => {
+    const el = document.createElement("div");
+    el.className = "medico-item";
+    el.innerHTML = `
+      <span class="medico-name">${m}</span>
+      <span class="medico-count" id="count-${i}">0</span>
+      <button class="btn-remove" onclick="removeMedico(${i})" title="Remover">×</button>
+    `;
+    div.appendChild(el);
+  });
+
+  generateCalendar();
+}
+
+function updateCounts() {
+  medicos.forEach((m, i) => {
+    const el = document.getElementById(`count-${i}`);
+    if (el) el.innerText = countShifts(m);
+  });
+}
+
+function addMedico() {
+  const input = document.getElementById("medicoInput");
+  const name = input.value.trim();
+  if (name && !medicos.includes(name)) {
+    medicos.push(name);
+    input.value = "";
+    renderMedicos();
+  }
+  input.focus();
+}
+
+function removeMedico(i) {
+  medicos.splice(i, 1);
+  renderMedicos();
+}
+
+function generateCalendar() {
+  const month = parseInt(monthSelect.value);
+  const year = parseInt(yearSelect.value);
+
+  document.getElementById("monthLabel").innerHTML =
+    `<strong>${months[month]}</strong> · ${year}`;
+
+  const tbody = document.querySelector("#calendar tbody");
+  tbody.innerHTML = "";
+
+  const firstDay = new Date(year, month, 1);
+  const lastDate = new Date(year, month + 1, 0).getDate();
+  const today = new Date();
+
+  let startDay = firstDay.getDay();
+  startDay = startDay === 0 ? 6 : startDay - 1;
+
+  let row = document.createElement("tr");
+
+  for (let i = 0; i < startDay; i++) {
+    const td = document.createElement("td");
+    td.classList.add("empty");
+    row.appendChild(td);
+  }
+
+  for (let day = 1; day <= lastDate; day++) {
+    const cell = document.createElement("td");
+    const date = new Date(year, month, day);
+    const dow = date.getDay();
+
+    if (dow === 0 || dow === 6) cell.classList.add("weekend");
+
+    if (today.getDate() === day &&
+        today.getMonth() === month &&
+        today.getFullYear() === year) {
+      cell.classList.add("today");
+    }
+
+    const options = `
+      <option value="">—</option>
+      <option value="${BLOCK}">Bloqueado</option>
+      ${medicos.map(m => `<option value="${m}">${m}</option>`).join("")}
+    `;
+
+    cell.innerHTML = `
+      <div class="day">${day}</div>
+      <select class="cell-select">${options}</select>
+    `;
+
+    const select = cell.querySelector("select");
+    select.onchange = () => {
+      cell.classList.remove("blocked", "assigned");
+      if (select.value === BLOCK) {
+        cell.classList.add("blocked");
+      } else if (select.value !== "") {
+        cell.classList.add("assigned");
+      }
+      updateCounts();
+    };
+
+    row.appendChild(cell);
+
+    if ((startDay + day) % 7 === 0) {
+      tbody.appendChild(row);
+      row = document.createElement("tr");
+    }
+  }
+
+  while (row.children.length > 0 && row.children.length < 7) {
+    const td = document.createElement("td");
+    td.classList.add("empty");
+    row.appendChild(td);
+  }
+  if (row.children.length > 0) tbody.appendChild(row);
+
+  updateCounts();
+}
+
+function updateSignatureState() {
+  const nameEl = document.querySelector(".signature-name");
+  const block = document.getElementById("signatureBlock");
+  if (!nameEl || !block) return;
+
+  // Pega só o texto, ignorando <br> e zero-width chars
+  const text = (nameEl.innerText || "").replace(/[\u200B-\u200D\uFEFF\s]/g, "");
+  const isEmpty = text.length === 0;
+
+  nameEl.setAttribute("data-empty", isEmpty ? "true" : "false");
+  block.setAttribute("data-hidden", isEmpty ? "true" : "false");
+}
+
+// Inicializar estado da assinatura
+document.addEventListener("DOMContentLoaded", updateSignatureState);
+
+function exportPDF() {
+  // Garantir que o estado da assinatura está correto antes de imprimir
+  updateSignatureState();
+
+  const inserted = [];
+  document.querySelectorAll(".cell-select").forEach(sel => {
+    if (sel.value && sel.value !== "") {
+      const span = document.createElement("div");
+      span.className = "print-text" + (sel.value === BLOCK ? " is-block" : "");
+      span.innerText = sel.value === BLOCK ? "Bloqueado" : sel.value;
+      sel.parentNode.appendChild(span);
+      inserted.push(span);
+    }
+  });
+
+  const originalTitle = document.title;
+  document.title = `escala-${months[monthSelect.value].toLowerCase()}-${yearSelect.value}`;
+
+  setTimeout(() => {
+    window.print();
+    setTimeout(() => {
+      inserted.forEach(s => s.remove());
+      document.title = originalTitle;
+    }, 500);
+  }, 100);
+}
+
+monthSelect.onchange = generateCalendar;
+yearSelect.onchange = generateCalendar;
+
+renderMedicos();
+</script>
+
+</body>
+</html>
