@@ -23,7 +23,7 @@
   --accent: #4b5563;
   --accent-deep: #1f2937;
   --accent-soft: #e5e7eb;
-  --weekend: #f0f1f4;
+  --weekend: #f7f8fa;
   --day-color: #374151;
   --block-stripe: rgba(75, 85, 99, 0.18);
   --shift: #374151;
@@ -43,7 +43,7 @@
   --accent: #0a6cb8;
   --accent-deep: #074d83;
   --accent-soft: #dceaf7;
-  --weekend: #eaf2fa;
+  --weekend: #f4f8fc;
   --day-color: #0a6cb8;
   --block-stripe: rgba(10, 108, 184, 0.16);
   --shift: #0d7a5f;
@@ -473,7 +473,18 @@ select:focus {
   background-image: repeating-linear-gradient(45deg, var(--block-stripe), var(--block-stripe) 3px, transparent 3px, transparent 6px);
   background-color: var(--paper);
 }
-.legend-swatch.assigned { background: var(--shift-soft); border-color: var(--shift); }
+.legend-swatch.assigned {
+  background: var(--paper);
+  border: 1px solid var(--shift);
+  position: relative;
+}
+.legend-swatch.assigned::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border: 1px solid var(--shift);
+  border-radius: 1px;
+}
 
 .calendar-wrap {
   background: var(--paper);
@@ -501,11 +512,11 @@ thead th {
   text-align: center;
 }
 
-thead th:not(:last-child) { border-right: 1px solid var(--line-soft); }
+thead th:not(:last-child) { border-right: 1.5px solid var(--line); }
 
 tbody td {
-  border-right: 1px solid var(--line-soft);
-  border-bottom: 1px solid var(--line-soft);
+  border-right: 1.5px solid var(--line);
+  border-bottom: 1.5px solid var(--line);
   height: 88px;
   position: relative;
   padding: 6px;
@@ -561,7 +572,7 @@ tbody td.empty {
   box-shadow: 0 0 0 2px var(--accent-soft);
 }
 
-td.assigned { background: var(--shift-soft); }
+td.assigned { background: var(--paper); }
 
 td.assigned .cell-select {
   background: var(--paper);
@@ -570,7 +581,7 @@ td.assigned .cell-select {
   font-weight: 600;
 }
 
-td.weekend.assigned { background: var(--shift-soft); }
+td.weekend.assigned { background: var(--weekend); }
 
 td.blocked {
   background-image: repeating-linear-gradient(
@@ -728,13 +739,17 @@ td.blocked:hover:not(.empty) { filter: brightness(0.97); }
   }
   .month-label { font-size: 10px !important; }
   .legend { margin-bottom: 8px; }
-  .calendar-wrap { border: 1px solid #999 !important; page-break-inside: avoid; }
+  .calendar-wrap { border: 1.5px solid #888 !important; page-break-inside: avoid; }
   thead th {
+    border-right: 1px solid #aaa !important;
+    border-bottom: 1.5px solid #888 !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
   tbody td {
     height: 76px !important;
+    border-right: 1px solid #b8b8b8 !important;
+    border-bottom: 1px solid #b8b8b8 !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
