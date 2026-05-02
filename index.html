@@ -533,22 +533,6 @@ tbody td.empty {
 
 .weekend { background-color: var(--weekend); }
 
-.today {
-  box-shadow: inset 0 0 0 2px var(--accent);
-}
-
-.today .day::after {
-  content: '';
-  display: inline-block;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--accent);
-  margin-left: 4px;
-  vertical-align: middle;
-  margin-bottom: 2px;
-}
-
 .cell-select {
   position: absolute;
   bottom: 8px;
@@ -778,7 +762,6 @@ td.blocked:hover:not(.empty) { filter: brightness(0.97); }
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
-  .today { box-shadow: inset 0 0 0 1.5px var(--accent) !important; }
 
   /* Assinatura no PDF */
   .signature {
@@ -988,7 +971,6 @@ function generateCalendar() {
 
   const firstDay = new Date(year, month, 1);
   const lastDate = new Date(year, month + 1, 0).getDate();
-  const today = new Date();
 
   let startDay = firstDay.getDay();
   startDay = startDay === 0 ? 6 : startDay - 1;
@@ -1007,12 +989,6 @@ function generateCalendar() {
     const dow = date.getDay();
 
     if (dow === 0 || dow === 6) cell.classList.add("weekend");
-
-    if (today.getDate() === day &&
-        today.getMonth() === month &&
-        today.getFullYear() === year) {
-      cell.classList.add("today");
-    }
 
     const options = `
       <option value="">—</option>
@@ -1076,10 +1052,13 @@ function exportPDF() {
 
   const inserted = [];
   document.querySelectorAll(".cell-select").forEach(sel => {
+    // Pular dias bloqueados - mostrar apenas a hachura no PDF
+    if (sel.value === BLOCK) return;
+
     if (sel.value && sel.value !== "") {
       const span = document.createElement("div");
-      span.className = "print-text" + (sel.value === BLOCK ? " is-block" : "");
-      span.innerText = sel.value === BLOCK ? "Bloqueado" : sel.value;
+      span.className = "print-text";
+      span.innerText = sel.value;
       sel.parentNode.appendChild(span);
       inserted.push(span);
     }
