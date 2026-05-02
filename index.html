@@ -577,7 +577,7 @@ td.assigned { background: var(--paper); }
 td.assigned .cell-select {
   background: var(--paper);
   border-color: var(--shift);
-  color: var(--shift);
+  color: #374151;
   font-weight: 600;
 }
 
@@ -762,7 +762,7 @@ td.blocked:hover:not(.empty) { filter: brightness(0.97); }
     right: 8px;
     font-size: 11.5px;
     font-weight: 600;
-    color: var(--shift);
+    color: #374151;
     line-height: 1.2;
     word-break: break-word;
   }
@@ -932,23 +932,54 @@ function renderMedicos() {
 
   if (medicos.length === 0) {
     div.innerHTML = '<div class="empty-state">Adicione médicos para montar a escala</div>';
-    generateCalendar();
-    return;
+  } else {
+    div.innerHTML = "";
+    medicos.forEach((m, i) => {
+      const el = document.createElement("div");
+      el.className = "medico-item";
+      el.innerHTML = `
+        <span class="medico-name">${m}</span>
+        <span class="medico-count" id="count-${i}">0</span>
+        <button class="btn-remove" onclick="removeMedico(${i})" title="Remover">×</button>
+      `;
+      div.appendChild(el);
+    });
   }
 
-  div.innerHTML = "";
-  medicos.forEach((m, i) => {
-    const el = document.createElement("div");
-    el.className = "medico-item";
-    el.innerHTML = `
-      <span class="medico-name">${m}</span>
-      <span class="medico-count" id="count-${i}">0</span>
-      <button class="btn-remove" onclick="removeMedico(${i})" title="Remover">×</button>
+  // Se ainda não há tabela criada, gera. Caso contrário, só atualiza as opções.
+  const tbody = document.querySelector("#calendar tbody");
+  if (!tbody || tbody.children.length === 0) {
+    generateCalendar();
+  } else {
+    updateCellOptions();
+  }
+}
+
+/* Atualiza apenas as <option> dos selects existentes, preservando valores selecionados */
+function updateCellOptions() {
+  document.querySelectorAll(".cell-select").forEach(sel => {
+    const currentValue = sel.value;
+
+    // Se o médico atualmente selecionado foi removido, limpar a célula
+    const stillExists = currentValue === "" || currentValue === BLOCK || medicos.includes(currentValue);
+
+    sel.innerHTML = `
+      <option value="">—</option>
+      <option value="${BLOCK}">Bloqueado</option>
+      ${medicos.map(m => `<option value="${m}">${m}</option>`).join("")}
     `;
-    div.appendChild(el);
+
+    if (stillExists) {
+      sel.value = currentValue;
+    } else {
+      // médico foi removido - limpar e remover classe
+      sel.value = "";
+      const cell = sel.closest("td");
+      if (cell) cell.classList.remove("assigned", "blocked");
+    }
   });
 
-  generateCalendar();
+  updateCounts();
 }
 
 function updateCounts() {
@@ -1079,8 +1110,19 @@ function exportPDF() {
     }
   });
 
+  // Pegar o título editável e converter espaços em hífens
+  const titleEl = document.querySelector(".title");
+  const titleText = (titleEl?.innerText || "escala")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "-")              // espaços → hífens
+    .replace(/[^\w\u00C0-\u017F-]/g, "") // remove caracteres especiais (mantém acentos)
+    .replace(/-+/g, "-")               // múltiplos hífens consecutivos viram um
+    .replace(/^-|-$/g, "")             // remove hífens nas pontas
+    || "escala";
+
   const originalTitle = document.title;
-  document.title = `escala-${months[monthSelect.value].toLowerCase()}-${yearSelect.value}`;
+  document.title = `${titleText}-${months[monthSelect.value].toLowerCase()}-${yearSelect.value}`;
 
   setTimeout(() => {
     window.print();
