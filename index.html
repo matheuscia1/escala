@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-br" data-theme="blue">
+<html lang="pt-br" data-theme="blue" data-mode="simple">
 <head>
 <meta charset="UTF-8">
 <title>Escala Médica</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
@@ -55,6 +55,126 @@
   --block-stripe: rgba(75, 85, 99, 0.18);
   --shift: #374151;
   --shift-soft: #e5e7eb;
+}
+
+/* ==================== TEMA VERDE ==================== */
+[data-theme="green"] {
+  --bg: #f0f6f3;
+  --bg-soft: #e0ece5;
+  --paper: #ffffff;
+  --ink: #0f2820;
+  --ink-soft: #2f5347;
+  --ink-muted: #82a397;
+  --line: #d2e2da;
+  --line-soft: #e6efea;
+  --accent: #1f7a5a;
+  --accent-deep: #155841;
+  --accent-soft: #d6ebe2;
+  --weekend: #f4f9f6;
+  --day-color: #1f7a5a;
+  --block-stripe: rgba(31, 122, 90, 0.16);
+  --shift: #2563a8;
+  --shift-soft: #dbe7f3;
+}
+
+/* ==================== TEMA TEAL ==================== */
+[data-theme="teal"] {
+  --bg: #eff5f6;
+  --bg-soft: #dde9eb;
+  --paper: #ffffff;
+  --ink: #0e2a30;
+  --ink-soft: #2c5159;
+  --ink-muted: #7d9aa0;
+  --line: #cfdfe2;
+  --line-soft: #e3eced;
+  --accent: #0e7490;
+  --accent-deep: #0a5364;
+  --accent-soft: #d2eaee;
+  --weekend: #f3f8f9;
+  --day-color: #0e7490;
+  --block-stripe: rgba(14, 116, 144, 0.16);
+  --shift: #1f6f5c;
+  --shift-soft: #d6e9e2;
+}
+
+/* ==================== TEMA ÍNDIGO ==================== */
+[data-theme="indigo"] {
+  --bg: #f1f1f9;
+  --bg-soft: #e2e3f0;
+  --paper: #ffffff;
+  --ink: #1c1d3a;
+  --ink-soft: #3e3f6b;
+  --ink-muted: #8b8da6;
+  --line: #d6d7e6;
+  --line-soft: #e8e9f1;
+  --accent: #4338ca;
+  --accent-deep: #2f269a;
+  --accent-soft: #e0deef;
+  --weekend: #f5f5fb;
+  --day-color: #4338ca;
+  --block-stripe: rgba(67, 56, 202, 0.15);
+  --shift: #1f7a5a;
+  --shift-soft: #d6ebe2;
+}
+
+/* ==================== TEMA SLATE ==================== */
+[data-theme="slate"] {
+  --bg: #f1f4f7;
+  --bg-soft: #e2e7ee;
+  --paper: #ffffff;
+  --ink: #1a2332;
+  --ink-soft: #3a485c;
+  --ink-muted: #8595a8;
+  --line: #d4dbe5;
+  --line-soft: #e8ecf1;
+  --accent: #475569;
+  --accent-deep: #2c3849;
+  --accent-soft: #dde2e9;
+  --weekend: #f5f7fa;
+  --day-color: #334155;
+  --block-stripe: rgba(71, 85, 105, 0.18);
+  --shift: #475569;
+  --shift-soft: #e1e6ec;
+}
+
+/* ==================== TEMA VINHO ==================== */
+[data-theme="wine"] {
+  --bg: #f7f1f3;
+  --bg-soft: #ebdfe3;
+  --paper: #ffffff;
+  --ink: #2c1218;
+  --ink-soft: #5a3038;
+  --ink-muted: #a08891;
+  --line: #e3d5d9;
+  --line-soft: #f0e7ea;
+  --accent: #9d2548;
+  --accent-deep: #6e1832;
+  --accent-soft: #f0d9e0;
+  --weekend: #faf4f6;
+  --day-color: #9d2548;
+  --block-stripe: rgba(157, 37, 72, 0.14);
+  --shift: #475569;
+  --shift-soft: #dde2e9;
+}
+
+/* ==================== TEMA BRONZE ==================== */
+[data-theme="bronze"] {
+  --bg: #f6f3ee;
+  --bg-soft: #ebe5d8;
+  --paper: #ffffff;
+  --ink: #2c2218;
+  --ink-soft: #5a4838;
+  --ink-muted: #a8957c;
+  --line: #e3dccc;
+  --line-soft: #f0ebe0;
+  --accent: #a06322;
+  --accent-deep: #714417;
+  --accent-soft: #ecdfca;
+  --weekend: #faf6ee;
+  --day-color: #a06322;
+  --block-stripe: rgba(160, 99, 34, 0.16);
+  --shift: #475569;
+  --shift-soft: #dde2e9;
 }
 
 * { box-sizing: border-box; }
@@ -226,7 +346,7 @@ body { display: flex; min-height: 100vh; }
   border-radius: 8px;
 }
 
-/* THEME SWITCH */
+/* THEME PICKER */
 .theme-switch {
   margin-top: 14px;
   padding-top: 14px;
@@ -245,58 +365,213 @@ body { display: flex; min-height: 100vh; }
   color: var(--ink-muted);
 }
 
-.switch {
+.theme-picker {
   position: relative;
-  width: 64px;
-  height: 26px;
-  background: var(--bg-soft);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  cursor: pointer;
-  transition: all 0.2s ease;
   flex-shrink: 0;
 }
 
-.switch::before {
-  content: '';
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 20px;
-  height: 20px;
-  background: var(--accent);
-  border-radius: 50%;
-  transition: transform 0.25s cubic-bezier(.34,1.4,.64,1);
-}
-
-[data-theme="blue"] .switch::before {
-  transform: translateX(38px);
-}
-
-.switch-icons {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 6px;
-  pointer-events: none;
-}
-
-.switch-icons span {
-  width: 18px;
-  height: 18px;
+.theme-current {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  cursor: pointer;
   display: grid;
   place-items: center;
-  font-size: 9px;
-  font-family: "IBM Plex Mono", monospace;
-  font-weight: 600;
-  color: var(--ink-muted);
-  transition: color 0.2s;
+  padding: 0;
+  transition: all 0.15s ease;
 }
 
-[data-theme="gray"] .switch-icons span:first-child { color: white; }
-[data-theme="blue"] .switch-icons span:last-child { color: white; }
+.theme-current:hover {
+  border-color: var(--ink-muted);
+  transform: scale(1.05);
+}
+
+.theme-current-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  background: var(--accent);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.06);
+  transition: background 0.2s;
+}
+
+.theme-palette {
+  position: fixed;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  box-shadow: 0 8px 24px rgba(15,23,42,0.12), 0 2px 6px rgba(15,23,42,0.06);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px) scale(0.96);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 9999;
+}
+
+.theme-palette.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.theme-opt {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  transition: all 0.12s ease;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.08) inset;
+}
+
+.theme-opt:hover {
+  transform: scale(1.1);
+}
+
+.theme-opt[data-active="true"] {
+  border-color: var(--ink);
+  transform: scale(1.05);
+}
+
+.theme-opt[data-active="true"]::after {
+  content: '';
+  position: absolute;
+  inset: 50% 50% auto auto;
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 2px var(--ink);
+}
+
+/* Picker group: design + cor lado a lado */
+.picker-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Design picker: paleta com ícones miniatura */
+.design-palette {
+  grid-template-columns: repeat(5, 1fr) !important;
+  width: 240px;
+}
+
+.design-opt {
+  width: 38px;
+  height: 38px;
+  border-radius: 6px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 4px;
+  background: var(--paper);
+  transition: all 0.12s ease;
+  display: grid;
+  place-items: center;
+  position: relative;
+  box-shadow: 0 0 0 1px var(--line) inset;
+}
+
+.design-opt:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 0 1px var(--ink-muted) inset;
+}
+
+.design-opt[data-active="true"] {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 1px var(--ink) inset;
+}
+
+/* Ícones miniatura (28x28) representando cada design */
+.design-icon {
+  width: 26px;
+  height: 26px;
+  display: block;
+  position: relative;
+  border-radius: 3px;
+}
+
+/* Padrão: grade 3x3 com bordas finas */
+.design-icon-default {
+  background:
+    linear-gradient(to right, transparent 0 33%, var(--ink-muted) 33% 34%, transparent 34% 66%, var(--ink-muted) 66% 67%, transparent 67%) repeat,
+    linear-gradient(to bottom, transparent 0 33%, var(--ink-muted) 33% 34%, transparent 34% 66%, var(--ink-muted) 66% 67%, transparent 67%) repeat;
+  border: 1px solid var(--ink-muted);
+}
+
+/* Cards: 4 quadradinhos com sombra */
+.design-icon-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 3px;
+  padding: 1px;
+}
+.design-icon-cards::before,
+.design-icon-cards::after {
+  content: '';
+  background: var(--ink-muted);
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+.design-icon-cards {
+  background:
+    linear-gradient(var(--ink-muted), var(--ink-muted)) top left / calc(50% - 1.5px) calc(50% - 1.5px) no-repeat,
+    linear-gradient(var(--ink-muted), var(--ink-muted)) top right / calc(50% - 1.5px) calc(50% - 1.5px) no-repeat,
+    linear-gradient(var(--ink-muted), var(--ink-muted)) bottom left / calc(50% - 1.5px) calc(50% - 1.5px) no-repeat,
+    linear-gradient(var(--ink-muted), var(--ink-muted)) bottom right / calc(50% - 1.5px) calc(50% - 1.5px) no-repeat;
+}
+
+/* Compacto: zebra com header escuro */
+.design-icon-compact {
+  background:
+    linear-gradient(to bottom,
+      var(--ink) 0 25%,
+      var(--paper) 25% 50%,
+      var(--bg-soft) 50% 75%,
+      var(--paper) 75% 100%);
+  border: 1px solid var(--ink-muted);
+}
+
+/* Linhas: só linhas horizontais */
+.design-icon-lines {
+  background:
+    linear-gradient(to bottom,
+      var(--ink) 0 2px,
+      transparent 2px 9px,
+      var(--ink-muted) 9px 10px,
+      transparent 10px 17px,
+      var(--ink-muted) 17px 18px,
+      transparent 18px 24px,
+      var(--ink) 24px 26px);
+}
+
+/* Boxed: borda grossa com células separadas */
+.design-icon-boxed {
+  background:
+    linear-gradient(var(--paper), var(--paper)) center / calc(100% - 8px) calc(100% - 8px) no-repeat;
+  border: 2px solid var(--ink);
+  position: relative;
+}
+.design-icon-boxed::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  background:
+    linear-gradient(var(--ink-muted), var(--ink-muted)) top left / calc(50% - 1px) calc(50% - 1px) no-repeat,
+    linear-gradient(var(--ink-muted), var(--ink-muted)) top right / calc(50% - 1px) calc(50% - 1px) no-repeat,
+    linear-gradient(var(--ink-muted), var(--ink-muted)) bottom left / calc(50% - 1px) calc(50% - 1px) no-repeat,
+    linear-gradient(var(--ink-muted), var(--ink-muted)) bottom right / calc(50% - 1px) calc(50% - 1px) no-repeat;
+}
 
 /* ==================== MAIN ==================== */
 .container {
@@ -686,6 +961,8 @@ select:focus {
 .legend-swatch.blocked-sw {
   background-image: repeating-linear-gradient(45deg, var(--block-stripe), var(--block-stripe) 3px, transparent 3px, transparent 6px);
   background-color: var(--paper);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
 }
 .legend-swatch.assigned {
   background: var(--paper);
@@ -698,6 +975,23 @@ select:focus {
   inset: 2px;
   border: 1px solid var(--shift);
   border-radius: 1px;
+}
+
+.legend-shifts { display: none; }
+[data-mode="advanced"] .legend-shifts { display: flex; }
+[data-mode="advanced"] .legend-item:has(.assigned),
+[data-mode="advanced"] .legend-item:has(.blocked-sw) { display: none; }
+
+.legend-shift-tag {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  color: white;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 8.5px;
+  font-weight: 700;
+  display: inline-grid;
+  place-items: center;
 }
 
 .calendar-wrap {
@@ -838,6 +1132,529 @@ td.weekend:hover:not(.empty) {
 
 td.blocked:hover:not(.empty) { filter: brightness(0.97); }
 
+/* ===== BLOQUEADO em designs customizados ===== */
+/* Nos designs Cards/Compacto/Linhas/Boxed, o background da célula sobrescreve
+   a hachura. Usamos um overlay com sombreamento sutil em vez da hachura. */
+[data-style="cards"] td.blocked,
+[data-style="compact"] td.blocked,
+[data-style="lines"] td.blocked,
+[data-style="boxed"] td.blocked {
+  background-image: none !important;
+  position: relative;
+}
+
+[data-style="cards"] td.blocked::after,
+[data-style="compact"] td.blocked::after,
+[data-style="lines"] td.blocked::after,
+[data-style="boxed"] td.blocked::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: inherit;
+}
+
+/* Garantir que conteúdo (.day, .cell-select, .shifts) fique acima do overlay */
+[data-style="cards"] td.blocked .day,
+[data-style="compact"] td.blocked .day,
+[data-style="lines"] td.blocked .day,
+[data-style="boxed"] td.blocked .day,
+[data-style="cards"] td.blocked .cell-select,
+[data-style="compact"] td.blocked .cell-select,
+[data-style="lines"] td.blocked .cell-select,
+[data-style="boxed"] td.blocked .cell-select,
+[data-style="cards"] td.blocked .shifts,
+[data-style="compact"] td.blocked .shifts,
+[data-style="lines"] td.blocked .shifts,
+[data-style="boxed"] td.blocked .shifts,
+[data-style="cards"] td.blocked .day-corner,
+[data-style="compact"] td.blocked .day-corner,
+[data-style="lines"] td.blocked .day-corner,
+[data-style="boxed"] td.blocked .day-corner {
+  z-index: 1;
+}
+
+/* ==================== DESIGN: CARDS ==================== */
+/* Cada dia é um card flutuante com sombra */
+[data-style="cards"] .header { text-align: center; }
+[data-style="cards"] .title {
+  font-family: "Lora", Georgia, serif !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em;
+}
+[data-style="cards"] .hospital-name {
+  font-family: "Lora", Georgia, serif;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  font-weight: 500;
+}
+[data-style="cards"] .month-label {
+  text-align: left;
+}
+[data-style="cards"] .legend {
+  justify-content: flex-start;
+  gap: 6px;
+}
+[data-style="cards"] .legend-item {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 5px 10px;
+  border-radius: 999px;
+  box-shadow: 0 1px 2px rgba(15,23,42,0.04);
+  text-transform: none;
+  letter-spacing: 0.04em;
+  font-size: 10.5px;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+[data-style="cards"] .calendar-wrap {
+  border: none !important;
+  background: transparent;
+  border-radius: 0;
+}
+[data-style="cards"] table {
+  border-spacing: 6px;
+  border-collapse: separate;
+}
+[data-style="cards"] thead th {
+  background: transparent;
+  border: none !important;
+  font-size: 10px;
+  padding: 4px 6px 8px;
+  color: var(--ink-muted);
+  font-family: "Lora", Georgia, serif;
+  font-style: italic;
+  text-transform: none;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+[data-style="cards"] tbody td {
+  border: 1px solid var(--line-soft) !important;
+  border-radius: 8px;
+  background: var(--paper);
+  box-shadow: 0 1px 3px rgba(15,23,42,0.04), 0 1px 2px rgba(15,23,42,0.03);
+  transition: all 0.18s ease;
+}
+[data-style="cards"] tbody td:hover:not(.empty) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15,23,42,0.08), 0 2px 4px rgba(15,23,42,0.04);
+  border-color: var(--accent-soft);
+}
+[data-style="cards"] tbody td.empty {
+  background: transparent;
+  border: 1px dashed var(--line-soft) !important;
+  box-shadow: none;
+}
+[data-style="cards"] tbody tr:last-child td { border-bottom: 1px solid var(--line-soft) !important; }
+[data-style="cards"] tbody td:last-child { border-right: 1px solid var(--line-soft) !important; }
+
+/* ==================== DESIGN: COMPACTO (zebra) ==================== */
+[data-style="compact"] .header {
+  text-align: left;
+  align-items: flex-start !important;
+}
+[data-style="compact"] .title {
+  font-family: "IBM Plex Mono", monospace !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: 22px;
+}
+[data-style="compact"] .hospital-name {
+  font-family: "IBM Plex Mono", monospace;
+  letter-spacing: 0.18em;
+  font-weight: 500;
+}
+[data-style="compact"] .month-label { text-align: left; }
+[data-style="compact"] .legend {
+  display: none !important;
+}
+[data-style="compact"] .calendar-wrap {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+[data-style="compact"] thead th {
+  font-size: 10px;
+  padding: 8px 4px;
+  background: var(--ink);
+  color: var(--paper);
+  border: none !important;
+  letter-spacing: 0.16em;
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 500;
+}
+[data-style="compact"] tbody td {
+  border: none !important;
+  border-bottom: 1px solid var(--line-soft) !important;
+}
+[data-style="compact"] tbody tr:nth-child(even) td:not(.empty) {
+  background: var(--bg-soft);
+}
+[data-style="compact"] tbody tr:nth-child(even) td.weekend:not(.empty) {
+  background: var(--weekend);
+  filter: brightness(0.97);
+}
+[data-style="compact"] tbody tr:last-child td { border-bottom: none !important; }
+
+/* ==================== DESIGN: LINHAS (minimalista) ==================== */
+[data-style="lines"] .header {
+  text-align: left;
+  align-items: flex-start !important;
+}
+[data-style="lines"] .title {
+  font-weight: 700 !important;
+  font-size: 30px;
+  letter-spacing: -0.025em;
+  border-bottom: 3px solid var(--ink);
+  display: inline-block !important;
+  padding-bottom: 4px !important;
+}
+[data-style="lines"] .hospital-name {
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  font-size: 11px;
+}
+[data-style="lines"] .month-label {
+  text-align: left;
+  border-top: 1px solid var(--line);
+  padding-top: 8px;
+  display: block;
+  width: 100%;
+}
+[data-style="lines"] .legend {
+  justify-content: flex-start;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 8px;
+  font-size: 9.5px;
+  color: var(--ink-muted);
+  text-transform: none;
+  letter-spacing: 0.04em;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-style: italic;
+  gap: 0 !important;
+}
+[data-style="lines"] .legend-item {
+  padding: 0 14px;
+  border-right: 1px solid var(--line);
+}
+[data-style="lines"] .legend-item:first-child { padding-left: 0; }
+[data-style="lines"] .legend-item:last-child { border-right: none; }
+[data-style="lines"] .calendar-wrap {
+  border: none;
+  background: transparent;
+}
+[data-style="lines"] thead th {
+  background: transparent;
+  border: none !important;
+  border-bottom: 2px solid var(--ink) !important;
+  color: var(--ink);
+  padding: 12px 6px;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  font-size: 10px;
+  text-align: left;
+  padding-left: 10px;
+}
+[data-style="lines"] tbody td {
+  border-right: none !important;
+  border-bottom: 1px solid var(--line) !important;
+  background: transparent;
+  padding-right: 12px !important;
+  padding-left: 12px !important;
+}
+[data-style="lines"] tbody td.empty {
+  background: transparent;
+}
+[data-style="lines"] tbody td.weekend {
+  background-color: transparent;
+  position: relative;
+}
+[data-style="lines"] tbody td.weekend::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--weekend);
+  opacity: 0.6;
+  z-index: 0;
+  pointer-events: none;
+}
+[data-style="lines"] tbody td > * { position: relative; z-index: 1; }
+[data-style="lines"] tbody tr:last-child td { border-bottom: 2px solid var(--ink) !important; }
+
+/* ==================== DESIGN: BOXED (poster) ==================== */
+[data-style="boxed"] .header { text-align: center; }
+[data-style="boxed"] .title {
+  font-weight: 800 !important;
+  font-size: 32px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+[data-style="boxed"] .hospital-name {
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  font-size: 12px;
+  border-top: 1px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
+  padding: 4px 12px !important;
+  display: inline-block;
+}
+[data-style="boxed"] .month-label {
+  background: var(--ink);
+  color: var(--paper);
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 0;
+  letter-spacing: 0.2em;
+}
+[data-style="boxed"] .month-label strong { color: var(--paper); }
+[data-style="boxed"] .legend {
+  display: none !important;
+}
+[data-style="boxed"] .calendar-wrap {
+  border: 3px solid var(--ink) !important;
+  border-radius: 0;
+  padding: 4px;
+  background: var(--ink);
+}
+[data-style="boxed"] table {
+  border-spacing: 4px;
+  border-collapse: separate;
+}
+[data-style="boxed"] thead th {
+  background: var(--accent);
+  color: white;
+  border: none !important;
+  font-weight: 700;
+  font-size: 11px;
+  padding: 12px 4px;
+  letter-spacing: 0.16em;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+[data-style="boxed"] tbody td {
+  border: none !important;
+  background: var(--paper);
+  border-radius: 4px;
+}
+[data-style="boxed"] tbody td.empty {
+  background: var(--ink-soft);
+  opacity: 0.4;
+}
+[data-style="boxed"] tbody td.weekend {
+  background: var(--weekend);
+}
+[data-style="boxed"] .day {
+  font-weight: 700;
+}
+
+/* ==================== MODO AVANÇADO (turnos M/T/N) ==================== */
+[data-mode="advanced"] tbody td {
+  height: auto;
+  min-height: 140px;
+  padding: 22px 4px 6px;
+  vertical-align: top;
+}
+
+[data-mode="advanced"] .day {
+  top: 4px;
+  right: 8px;
+  font-size: 13px;
+}
+
+[data-mode="advanced"] .cell-select { display: none; }
+
+.shifts {
+  display: none;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 0;
+}
+
+[data-mode="advanced"] .shifts { display: flex; }
+
+.shift {
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  align-items: stretch;
+  gap: 0;
+  border-radius: 4px;
+  background: var(--bg-soft);
+  overflow: hidden;
+  border: 1px solid var(--line-soft);
+  min-height: 20px;
+}
+
+.shift-tag {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: white;
+  display: grid;
+  place-items: center;
+}
+
+.shift[data-shift="M"] .shift-tag { background: #2f8f6f; }   /* manhã - verde sálvia */
+.shift[data-shift="T"] .shift-tag { background: #3a7ab8; }   /* tarde - azul aço */
+.shift[data-shift="N"] .shift-tag { background: #6b5b9e; }   /* noite - roxo lavanda */
+
+.shift-slots {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--paper);
+  padding: 1px;
+}
+
+.shift-select {
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 10.5px;
+  color: var(--ink);
+  padding: 2px 5px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.12s;
+  outline: none;
+  min-height: 17px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+}
+
+.shift-select:hover { background: var(--bg-soft); }
+.shift-select:focus { background: var(--accent-soft); }
+.shift-select.has-value { font-weight: 600; color: #374151; }
+.shift-select.is-block {
+  color: var(--accent-deep);
+  font-weight: 700;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Bloco da célula inteira no modo avançado quando bloqueada */
+[data-mode="advanced"] td.fully-blocked {
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--block-stripe),
+    var(--block-stripe) 4px,
+    transparent 4px,
+    transparent 9px
+  );
+}
+
+[data-mode="advanced"] td.fully-blocked .shifts {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* ==================== CONTROLE DE MODO NO SIDEBAR ==================== */
+.mode-control {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-soft);
+}
+
+.mode-control-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.mode-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted);
+}
+
+.mode-toggle {
+  display: inline-flex;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 2px;
+  overflow: hidden;
+}
+
+.mode-toggle button {
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  cursor: pointer;
+  color: var(--ink-muted);
+  border-radius: 4px;
+  transition: all 0.15s;
+}
+
+.mode-toggle button.active {
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+}
+
+.slots-control {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+[data-mode="advanced"] .slots-control { display: flex; }
+
+.slots-stepper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 2px;
+}
+
+.slots-stepper button {
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  color: var(--accent);
+  border-radius: 3px;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+}
+
+.slots-stepper button:hover:not(:disabled) { background: var(--accent-soft); }
+.slots-stepper button:disabled { color: var(--ink-muted); cursor: not-allowed; opacity: 0.5; }
+
+.slots-stepper-value {
+  min-width: 16px;
+  text-align: center;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* PDF/print do modo avançado */
 /* ==================== ASSINATURA ==================== */
 .signature {
   margin-top: 80px;
@@ -933,69 +1750,204 @@ td.blocked:hover:not(.empty) { filter: brightness(0.97); }
 .print-text { display: none; }
 
 @media print {
-  @page { size: A4 landscape; margin: 10mm; }
+  @page { size: A4 landscape; margin: 6mm; }
   html, body { background: white !important; }
   body { display: block; }
   .sidebar, .controls { display: none !important; }
   .container { max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
-  .header { margin-bottom: 12px; }
+
+  /* ===== Header padrão ===== */
+  .header { margin-bottom: 6px !important; }
   .title {
-    font-size: 22px !important;
+    font-size: 18px !important;
     border: none !important;
     padding: 0 !important;
     background: transparent !important;
     box-shadow: none !important;
+    margin: 0 !important;
   }
   .hospital-name {
-    font-size: 11px !important;
+    font-size: 9px !important;
     border: none !important;
     background: transparent !important;
+    padding: 0 !important;
+    margin: 0 0 2px 0 !important;
   }
-  .month-label { font-size: 10px !important; }
-  .legend { margin-bottom: 8px; }
-  .calendar-wrap { border: 1.5px solid #888 !important; page-break-inside: avoid; }
+  .month-label { font-size: 8.5px !important; margin-top: 2px !important; }
+  .legend {
+    margin-bottom: 4px !important;
+    font-size: 8px !important;
+    gap: 8px !important;
+  }
+  .legend-shift-tag {
+    width: 12px !important; height: 12px !important; font-size: 7px !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .legend-swatch,
+  .legend-swatch.blocked-sw,
+  .legend-swatch.weekend,
+  .legend-swatch.assigned {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* ===== Tabela ===== */
+  .calendar-wrap {
+    border: 1px solid #888 !important;
+    page-break-inside: auto;
+    break-inside: auto;
+  }
+  thead { display: table-header-group; }
   thead th {
     border-right: 1px solid #aaa !important;
-    border-bottom: 1.5px solid #888 !important;
+    border-bottom: 1px solid #888 !important;
+    padding: 4px 4px !important;
+    font-size: 8.5px !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
   tbody td {
-    height: 76px !important;
     border-right: 1px solid #b8b8b8 !important;
     border-bottom: 1px solid #b8b8b8 !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
-  }
-  .cell-select { display: none !important; }
-  .print-text {
-    display: block;
-    position: absolute;
-    bottom: 8px;
-    left: 8px;
-    right: 8px;
-    font-size: 11.5px;
-    font-weight: 600;
-    color: #374151;
-    line-height: 1.2;
-    word-break: break-word;
-  }
-  .print-text.is-block {
-    color: var(--accent-deep);
-    text-transform: uppercase;
-    font-size: 9.5px;
-    letter-spacing: 0.1em;
-    font-weight: 700;
   }
   td.weekend, td.assigned, td.blocked, td.empty {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
 
-  /* Assinatura no PDF */
+  /* Sombreamento de bloqueado nos designs customizados (no PDF também) */
+  [data-style="cards"] td.blocked::after,
+  [data-style="compact"] td.blocked::after,
+  [data-style="lines"] td.blocked::after,
+  [data-style="boxed"] td.blocked::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* ===== Modo Simples ===== */
+  body.pdf-d1 tbody td { height: 72px !important; }
+  body.pdf-d2 tbody td { height: 58px !important; }
+
+  .cell-select { display: none !important; }
+  .print-text {
+    display: block;
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+    font-size: 9.5px;
+    font-weight: 600;
+    color: #374151;
+    line-height: 1.15;
+    word-break: break-word;
+  }
+  body.pdf-d2 .print-text { font-size: 8.5px; bottom: 3px; }
+
+  /* Tabela: deixar altura ser natural baseada no conteúdo */
+  table { table-layout: fixed !important; }
+  [data-mode="advanced"] tbody td {
+    height: auto !important;
+    padding: 11px 2px 2px !important;
+    vertical-align: top !important;
+  }
+  [data-mode="advanced"] .day {
+    font-size: 8.5px !important;
+    top: 2px !important;
+    right: 4px !important;
+  }
+  [data-mode="advanced"] .shifts {
+    gap: 1px !important;
+    height: auto !important;
+  }
+  [data-mode="advanced"] .shift {
+    grid-template-columns: 9px 1fr !important;
+    min-height: 0 !important;
+    border-radius: 2px !important;
+    border: none !important;
+  }
+  [data-mode="advanced"] .shift-tag {
+    font-size: 6px !important;
+    color: white !important;
+  }
+  [data-mode="advanced"] .shift-slots {
+    padding: 0 !important;
+    gap: 0 !important;
+    background: white !important;
+    min-height: 11px !important;
+  }
+
+  /* ESCONDE OS SELECTS COMPLETAMENTE */
+  .shift-select { display: none !important; }
+
+  /* MOSTRA O CONTEÚDO DE IMPRESSÃO */
+  .shift-slots-print {
+    display: flex !important;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+  }
+  .shift-print-line {
+    color: #374151;
+    font-weight: 600;
+    word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Densidades para o modo avançado */
+  body.pdf-d1 .shift-print-line { font-size: 11.5px; line-height: 1.2; padding: 1px 4px; }
+  body.pdf-d2 .shift-print-line { font-size: 9.5px; line-height: 1.15; padding: 1px 3px; }
+  body.pdf-d3 .shift-print-line { font-size: 8px; line-height: 1.1; padding: 0 3px; }
+  body.pdf-d4 .shift-print-line { font-size: 6.5px; line-height: 1.05; padding: 0 2px; }
+
+  body.pdf-d1 [data-mode="advanced"] .shift-tag { font-size: 9px !important; }
+  body.pdf-d2 [data-mode="advanced"] .shift-tag { font-size: 7.5px !important; }
+  body.pdf-d3 [data-mode="advanced"] .shift-tag { font-size: 6.5px !important; }
+  body.pdf-d4 [data-mode="advanced"] .shift-tag { font-size: 5.5px !important; }
+
+  body.pdf-d1 [data-mode="advanced"] .shift { grid-template-columns: 13px 1fr !important; }
+  body.pdf-d2 [data-mode="advanced"] .shift { grid-template-columns: 11px 1fr !important; }
+  body.pdf-d3 [data-mode="advanced"] .shift { grid-template-columns: 9px 1fr !important; }
+  body.pdf-d4 [data-mode="advanced"] .shift { grid-template-columns: 8px 1fr !important; }
+
+  body.pdf-d1 [data-mode="advanced"] tbody td { padding: 14px 3px 3px !important; }
+  body.pdf-d2 [data-mode="advanced"] tbody td { padding: 12px 2px 2px !important; }
+  body.pdf-d3 [data-mode="advanced"] tbody td { padding: 11px 2px 2px !important; }
+  body.pdf-d4 [data-mode="advanced"] tbody td { padding: 9px 1px 1px !important; }
+
+  body.pdf-d1 [data-mode="advanced"] .day { font-size: 11px !important; }
+  body.pdf-d2 [data-mode="advanced"] .day { font-size: 10px !important; }
+  body.pdf-d3 [data-mode="advanced"] .day { font-size: 9px !important; }
+  body.pdf-d4 [data-mode="advanced"] .day { font-size: 8.5px !important; }
+
+  body.pdf-d1 [data-mode="advanced"] .shift-slots { min-height: 14px !important; }
+  body.pdf-d2 [data-mode="advanced"] .shift-slots { min-height: 12px !important; }
+  body.pdf-d3 [data-mode="advanced"] .shift-slots { min-height: 10px !important; }
+  body.pdf-d4 [data-mode="advanced"] .shift-slots { min-height: 9px !important; }
+
+  /* Turnos vazios não aparecem na impressão (libera muito espaço) */
+  .shift-empty-print { display: none !important; }
+  .cell-empty-print .shifts { display: none !important; }
+
+  /* ===== Assinatura ===== */
   .signature {
-    margin-top: 60px !important;
+    margin-top: 12px !important;
     page-break-inside: avoid;
+  }
+  body.pdf-d3 .signature, body.pdf-d4 .signature { margin-top: 10px !important; }
+  body.pdf-d4 .legend {
+    font-size: 7px !important;
+    margin-bottom: 2px !important;
+    gap: 6px !important;
+  }
+  body.pdf-d4 .legend-shift-tag {
+    width: 10px !important;
+    height: 10px !important;
+    font-size: 6px !important;
   }
 
   .signature-name,
@@ -1006,17 +1958,14 @@ td.blocked:hover:not(.empty) { filter: brightness(0.97); }
     margin-left: 0 !important;
     box-shadow: none !important;
   }
+  .signature-name { font-size: 11px !important; }
+  .signature-label { font-size: 9px !important; }
+  body.pdf-d3 .signature-name, body.pdf-d4 .signature-name { font-size: 10px !important; }
+  body.pdf-d3 .signature-label, body.pdf-d4 .signature-label { font-size: 8px !important; }
 
-  /* Esconde o bloco inteiro quando o nome está vazio */
-  .signature[data-hidden="true"] {
-    display: none !important;
-  }
-
-  /* Esconde placeholders na impressão */
+  .signature[data-hidden="true"] { display: none !important; }
   .signature-name:empty::before,
-  .signature-name[data-empty="true"]::before {
-    content: '' !important;
-  }
+  .signature-name[data-empty="true"]::before { content: '' !important; }
 }
 
 @media (max-width: 900px) {
@@ -1043,12 +1992,67 @@ td.blocked:hover:not(.empty) { filter: brightness(0.97); }
 
   <div class="sidebar-list" id="listaMedicos"></div>
 
+  <!-- Modo da escala -->
+  <div class="mode-control">
+    <div class="mode-control-row">
+      <span class="mode-label">Modo</span>
+      <div class="mode-toggle" role="tablist">
+        <button id="modeSimpleBtn" class="active" onclick="setMode('simple')">Simples</button>
+        <button id="modeAdvancedBtn" onclick="setMode('advanced')">Avançado</button>
+      </div>
+    </div>
+    <div class="slots-control">
+      <span class="mode-label">Médicos / turno</span>
+      <div class="slots-stepper">
+        <button onclick="changeSlots(-1)" id="slotsMinus" title="Diminuir">−</button>
+        <span class="slots-stepper-value" id="slotsValue">1</span>
+        <button onclick="changeSlots(1)" id="slotsPlus" title="Aumentar">+</button>
+      </div>
+    </div>
+  </div>
+
   <div class="theme-switch">
     <span class="theme-label">Tema</span>
-    <div class="switch" onclick="toggleTheme()" title="Alternar entre cinza e azul" role="switch" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' ')toggleTheme()">
-      <div class="switch-icons">
-        <span>CZ</span>
-        <span>AZ</span>
+    <div class="picker-group">
+      <!-- Seletor de DESIGN (estilo da tabela) -->
+      <div class="theme-picker design-picker">
+        <button class="theme-current" id="designCurrentBtn" onclick="toggleDesignPalette(event)" aria-haspopup="true" aria-expanded="false" title="Trocar design da tabela">
+          <span class="design-icon" id="designCurrentIcon"></span>
+        </button>
+        <div class="theme-palette design-palette" id="designPalette" role="menu">
+          <button class="design-opt" data-style="default" onclick="selectDesign('default')" title="Padrão">
+            <span class="design-icon design-icon-default"></span>
+          </button>
+          <button class="design-opt" data-style="cards" onclick="selectDesign('cards')" title="Cartões">
+            <span class="design-icon design-icon-cards"></span>
+          </button>
+          <button class="design-opt" data-style="compact" onclick="selectDesign('compact')" title="Compacto">
+            <span class="design-icon design-icon-compact"></span>
+          </button>
+          <button class="design-opt" data-style="lines" onclick="selectDesign('lines')" title="Linhas">
+            <span class="design-icon design-icon-lines"></span>
+          </button>
+          <button class="design-opt" data-style="boxed" onclick="selectDesign('boxed')" title="Boxed">
+            <span class="design-icon design-icon-boxed"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Seletor de COR -->
+      <div class="theme-picker">
+        <button class="theme-current" id="themeCurrentBtn" onclick="toggleThemePalette(event)" aria-haspopup="true" aria-expanded="false" title="Trocar cor">
+          <span class="theme-current-swatch" id="themeCurrentSwatch"></span>
+        </button>
+        <div class="theme-palette" id="themePalette" role="menu">
+          <button class="theme-opt" data-color="blue"   style="background:#0a6cb8" onclick="selectTheme('blue')"   title="Azul"></button>
+          <button class="theme-opt" data-color="green"  style="background:#1f7a5a" onclick="selectTheme('green')"  title="Verde"></button>
+          <button class="theme-opt" data-color="teal"   style="background:#0e7490" onclick="selectTheme('teal')"   title="Teal"></button>
+          <button class="theme-opt" data-color="indigo" style="background:#4338ca" onclick="selectTheme('indigo')" title="Índigo"></button>
+          <button class="theme-opt" data-color="slate"  style="background:#475569" onclick="selectTheme('slate')"  title="Slate"></button>
+          <button class="theme-opt" data-color="gray"   style="background:#4b5563" onclick="selectTheme('gray')"   title="Cinza"></button>
+          <button class="theme-opt" data-color="wine"   style="background:#9d2548" onclick="selectTheme('wine')"   title="Vinho"></button>
+          <button class="theme-opt" data-color="bronze" style="background:#a06322" onclick="selectTheme('bronze')" title="Bronze"></button>
+        </div>
       </div>
     </div>
   </div>
@@ -1092,6 +2096,9 @@ td.blocked:hover:not(.empty) { filter: brightness(0.97); }
     <div class="legend-item"><div class="legend-swatch assigned"></div> Plantão atribuído</div>
     <div class="legend-item"><div class="legend-swatch weekend"></div> Fim de semana</div>
     <div class="legend-item"><div class="legend-swatch blocked-sw"></div> Bloqueado</div>
+    <div class="legend-item legend-shifts"><span class="legend-shift-tag" style="background:#2f8f6f">M</span> Manhã (6h)</div>
+    <div class="legend-item legend-shifts"><span class="legend-shift-tag" style="background:#3a7ab8">T</span> Tarde (6h)</div>
+    <div class="legend-item legend-shifts"><span class="legend-shift-tag" style="background:#6b5b9e">N</span> Noite (12h)</div>
   </div>
 
   <div class="calendar-wrap">
@@ -1183,15 +2190,317 @@ for (let y = currentYear - 1; y <= currentYear + 5; y++) {
 monthSelect.value = new Date().getMonth();
 yearSelect.value = currentYear;
 
-function toggleTheme() {
-  const html = document.documentElement;
-  const current = html.getAttribute("data-theme");
-  html.setAttribute("data-theme", current === "blue" ? "gray" : "blue");
+function positionPalette(palette, button) {
+  const rect = button.getBoundingClientRect();
+  // Mostrar temporariamente para medir
+  const wasOpen = palette.classList.contains("open");
+  if (!wasOpen) {
+    palette.style.visibility = "hidden";
+    palette.classList.add("open");
+  }
+  const paletteRect = palette.getBoundingClientRect();
+  if (!wasOpen) {
+    palette.classList.remove("open");
+    palette.style.visibility = "";
+  }
+
+  // Posicionar acima do botão, alinhado pela direita
+  const top = rect.top - paletteRect.height - 8;
+  let left = rect.right - paletteRect.width;
+
+  // Garantir que não saia da viewport
+  if (left < 8) left = 8;
+  if (left + paletteRect.width > window.innerWidth - 8) {
+    left = window.innerWidth - paletteRect.width - 8;
+  }
+
+  palette.style.top = top + "px";
+  palette.style.left = left + "px";
 }
 
+function toggleThemePalette(event) {
+  event?.stopPropagation();
+  const palette = document.getElementById("themePalette");
+  const button = document.getElementById("themeCurrentBtn");
+  document.getElementById("designPalette")?.classList.remove("open");
+
+  if (palette.classList.contains("open")) {
+    palette.classList.remove("open");
+    button.setAttribute("aria-expanded", "false");
+  } else {
+    positionPalette(palette, button);
+    palette.classList.add("open");
+    button.setAttribute("aria-expanded", "true");
+  }
+}
+
+function selectTheme(themeName) {
+  document.documentElement.setAttribute("data-theme", themeName);
+  document.querySelectorAll(".theme-opt").forEach(btn => {
+    btn.setAttribute("data-active", btn.dataset.color === themeName ? "true" : "false");
+  });
+  document.getElementById("themePalette").classList.remove("open");
+  document.getElementById("themeCurrentBtn").setAttribute("aria-expanded", "false");
+}
+
+function toggleDesignPalette(event) {
+  event?.stopPropagation();
+  const palette = document.getElementById("designPalette");
+  const button = document.getElementById("designCurrentBtn");
+  document.getElementById("themePalette")?.classList.remove("open");
+
+  if (palette.classList.contains("open")) {
+    palette.classList.remove("open");
+    button.setAttribute("aria-expanded", "false");
+  } else {
+    positionPalette(palette, button);
+    palette.classList.add("open");
+    button.setAttribute("aria-expanded", "true");
+  }
+}
+
+function selectDesign(styleName) {
+  if (styleName === "default") {
+    document.documentElement.removeAttribute("data-style");
+  } else {
+    document.documentElement.setAttribute("data-style", styleName);
+  }
+  document.querySelectorAll(".design-opt").forEach(btn => {
+    btn.setAttribute("data-active", btn.dataset.style === styleName ? "true" : "false");
+  });
+  // Atualizar ícone do botão atual
+  updateDesignCurrentIcon(styleName);
+  document.getElementById("designPalette").classList.remove("open");
+  document.getElementById("designCurrentBtn").setAttribute("aria-expanded", "false");
+}
+
+function updateDesignCurrentIcon(styleName) {
+  const icon = document.getElementById("designCurrentIcon");
+  if (!icon) return;
+  // Remove classes antigas e aplica a nova
+  icon.className = "design-icon design-icon-" + (styleName || "default");
+}
+
+// Fechar paletas ao clicar fora
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".theme-picker")) {
+    document.getElementById("themePalette")?.classList.remove("open");
+    document.getElementById("designPalette")?.classList.remove("open");
+    document.getElementById("themeCurrentBtn")?.setAttribute("aria-expanded", "false");
+    document.getElementById("designCurrentBtn")?.setAttribute("aria-expanded", "false");
+  }
+});
+
+// Fechar com ESC
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    document.getElementById("themePalette")?.classList.remove("open");
+    document.getElementById("designPalette")?.classList.remove("open");
+  }
+});
+
+/* ==================== PERSISTÊNCIA POR MÊS/ANO ==================== */
+// Estrutura: { "2026-4": { mode: "simple", slots: 1, entries: [...] }, ... }
+const scheduleStore = {};
+let currentMonthKey = null; // chave do mês atualmente exibido
+
+function getMonthKey(month, year) {
+  return `${year}-${month}`;
+}
+
+/* Captura o estado atual da tabela e retorna como objeto serializável */
+function captureCurrentState() {
+  const mode = getMode();
+  const entries = [];
+
+  if (mode === "simple") {
+    document.querySelectorAll(".cell-select").forEach(sel => {
+      if (!sel.value) return;
+      const cell = sel.closest("td");
+      const dayEl = cell?.querySelector(".day");
+      const day = dayEl ? parseInt(dayEl.innerText) : null;
+      if (day) entries.push({ d: day, v: sel.value });
+    });
+  } else {
+    document.querySelectorAll("#calendar tbody td:not(.empty)").forEach(cell => {
+      const dayEl = cell.querySelector(".day");
+      const day = dayEl ? parseInt(dayEl.innerText) : null;
+      if (!day) return;
+
+      SHIFTS.forEach(shiftKey => {
+        const slots = cell.querySelectorAll(`.shift[data-shift="${shiftKey}"] .shift-select`);
+        const values = Array.from(slots).map(s => s.value);
+        // Só salvar se houver pelo menos um valor
+        if (values.some(v => v !== "")) {
+          entries.push({ d: day, sh: shiftKey, v: values });
+        }
+      });
+    });
+  }
+
+  return { mode, slots: slotsPerShift, entries };
+}
+
+/* Salva o estado atual no store sob a chave do mês atual */
+function saveCurrentMonth() {
+  if (!currentMonthKey) return;
+  const state = captureCurrentState();
+  if (state.entries.length > 0) {
+    scheduleStore[currentMonthKey] = state;
+  } else {
+    // Se vazio, remover do store para não ocupar memória
+    delete scheduleStore[currentMonthKey];
+  }
+}
+
+/* Restaura entradas salvas na tabela atual */
+function restoreEntries(entries, savedMode, savedSlots) {
+  if (!entries || entries.length === 0) return;
+
+  const currentMode = getMode();
+  // Se o modo do salvamento difere do atual, tentar adaptar
+  // (mas só restaura o que cabe; o resto fica perdido)
+
+  entries.forEach(entry => {
+    if (entry.sh) {
+      // Entrada avançada
+      if (currentMode === "advanced") {
+        const shifts = {};
+        shifts[entry.sh] = entry.v;
+        setCellShifts(entry.d, shifts);
+      } else {
+        // Avançado → simples: pegar primeiro valor não-vazio
+        const firstVal = entry.v.find(v => v !== "");
+        if (firstVal) setCellValue(entry.d, firstVal);
+      }
+    } else {
+      // Entrada simples
+      if (currentMode === "simple") {
+        setCellValue(entry.d, entry.v);
+      } else {
+        // Simples → avançado: colocar no slot 1 do M
+        setCellShifts(entry.d, { M: [entry.v] });
+      }
+    }
+  });
+}
+
+/* Quando o mês ou ano muda, salva o atual e carrega o novo */
+function handleMonthOrYearChange() {
+  // 1. Salvar mês atual
+  saveCurrentMonth();
+
+  // 2. Atualizar chave para o novo mês
+  const newMonth = parseInt(monthSelect.value);
+  const newYear = parseInt(yearSelect.value);
+  const newKey = getMonthKey(newMonth, newYear);
+
+  // 3. Se o novo mês tem estado salvo, ajustar mode/slots ANTES de gerar
+  const saved = scheduleStore[newKey];
+  if (saved) {
+    if (saved.mode && saved.mode !== getMode()) {
+      document.documentElement.setAttribute("data-mode", saved.mode);
+      document.getElementById("modeSimpleBtn").classList.toggle("active", saved.mode === "simple");
+      document.getElementById("modeAdvancedBtn").classList.toggle("active", saved.mode === "advanced");
+    }
+    if (saved.slots && saved.slots !== slotsPerShift) {
+      slotsPerShift = saved.slots;
+      document.getElementById("slotsValue").innerText = slotsPerShift;
+      document.getElementById("slotsMinus").disabled = slotsPerShift <= 1;
+      document.getElementById("slotsPlus").disabled = slotsPerShift >= 5;
+    }
+  }
+
+  // 4. Gerar o calendário
+  currentMonthKey = newKey;
+  generateCalendar();
+
+  // 5. Restaurar entradas se houver
+  if (saved) {
+    restoreEntries(saved.entries, saved.mode, saved.slots);
+    updateCounts();
+  }
+}
+
+/* ==================== MODO E SLOTS ==================== */
+let slotsPerShift = 1;
+const SHIFTS = ["M", "T", "N"]; // Manhã, Tarde, Noite
+
+function getMode() {
+  return document.documentElement.getAttribute("data-mode") || "simple";
+}
+
+function setMode(mode) {
+  const previous = getMode();
+  if (previous === mode) return;
+
+  // Capturar dados ANTES de trocar modo
+  const captured = captureCurrentState();
+
+  document.documentElement.setAttribute("data-mode", mode);
+  document.getElementById("modeSimpleBtn").classList.toggle("active", mode === "simple");
+  document.getElementById("modeAdvancedBtn").classList.toggle("active", mode === "advanced");
+
+  // Regerar a tabela com a nova estrutura
+  generateCalendar();
+
+  // Restaurar os dados capturados (com adaptação entre modos)
+  if (captured.entries.length > 0) {
+    restoreEntries(captured.entries, captured.mode, captured.slots);
+    updateCounts();
+    saveCurrentMonth();
+  }
+}
+
+function hasAnyAssignment() {
+  if (getMode() === "simple") {
+    return Array.from(document.querySelectorAll(".cell-select"))
+      .some(s => s.value && s.value !== "");
+  } else {
+    return Array.from(document.querySelectorAll(".shift-select"))
+      .some(s => s.value && s.value !== "");
+  }
+}
+
+function changeSlots(delta) {
+  const next = Math.max(1, Math.min(5, slotsPerShift + delta));
+  if (next === slotsPerShift) return;
+  slotsPerShift = next;
+  document.getElementById("slotsValue").innerText = next;
+  document.getElementById("slotsMinus").disabled = next <= 1;
+  document.getElementById("slotsPlus").disabled = next >= 5;
+
+  // Se em modo avançado, re-renderizar os slots preservando o que dá
+  if (getMode() === "advanced") {
+    rebuildShiftSlots();
+  }
+}
+
+/* Reconstrói os slots de cada turno preservando os valores que ainda cabem */
+function rebuildShiftSlots() {
+  document.querySelectorAll("#calendar tbody td:not(.empty)").forEach(cell => {
+    SHIFTS.forEach(shiftKey => {
+      const shiftEl = cell.querySelector(`.shift[data-shift="${shiftKey}"] .shift-slots`);
+      if (!shiftEl) return;
+      const existingValues = Array.from(shiftEl.querySelectorAll(".shift-select")).map(s => s.value);
+      shiftEl.innerHTML = "";
+      for (let i = 0; i < slotsPerShift; i++) {
+        shiftEl.appendChild(buildShiftSelect(existingValues[i] || ""));
+      }
+    });
+    refreshCellState(cell);
+  });
+  updateCounts();
+}
+
+/* ==================== HELPERS DE CONTAGEM ==================== */
 function countShifts(name) {
   let c = 0;
-  document.querySelectorAll(".cell-select").forEach(s => { if (s.value === name) c++; });
+  if (getMode() === "simple") {
+    document.querySelectorAll(".cell-select").forEach(s => { if (s.value === name) c++; });
+  } else {
+    document.querySelectorAll(".shift-select").forEach(s => { if (s.value === name) c++; });
+  }
   return c;
 }
 
@@ -1224,28 +2533,30 @@ function renderMedicos() {
   }
 }
 
-/* Atualiza apenas as <option> dos selects existentes, preservando valores selecionados */
+/* Atualiza as <option> dos selects existentes (em qualquer modo), preservando valores */
 function updateCellOptions() {
-  document.querySelectorAll(".cell-select").forEach(sel => {
-    const currentValue = sel.value;
+  const optionsHTML = `
+    <option value="">—</option>
+    <option value="${BLOCK}">Bloqueado</option>
+    ${medicos.map(m => `<option value="${m}">${m}</option>`).join("")}
+  `;
 
-    // Se o médico atualmente selecionado foi removido, limpar a célula
+  const allSelects = document.querySelectorAll(".cell-select, .shift-select");
+  allSelects.forEach(sel => {
+    const currentValue = sel.value;
     const stillExists = currentValue === "" || currentValue === BLOCK || medicos.includes(currentValue);
 
-    sel.innerHTML = `
-      <option value="">—</option>
-      <option value="${BLOCK}">Bloqueado</option>
-      ${medicos.map(m => `<option value="${m}">${m}</option>`).join("")}
-    `;
+    sel.innerHTML = optionsHTML;
 
     if (stillExists) {
       sel.value = currentValue;
     } else {
-      // médico foi removido - limpar e remover classe
       sel.value = "";
-      const cell = sel.closest("td");
-      if (cell) cell.classList.remove("assigned", "blocked");
     }
+
+    // Atualizar visuais da célula
+    const cell = sel.closest("td");
+    if (cell) refreshCellState(cell);
   });
 
   updateCounts();
@@ -1274,6 +2585,57 @@ function removeMedico(i) {
   renderMedicos();
 }
 
+/* ==================== BUILDERS DE CÉLULA ==================== */
+function buildOptionsHTML() {
+  return `
+    <option value="">—</option>
+    <option value="${BLOCK}">Bloqueado</option>
+    ${medicos.map(m => `<option value="${m}">${m}</option>`).join("")}
+  `;
+}
+
+function buildShiftSelect(value = "") {
+  const sel = document.createElement("select");
+  sel.className = "shift-select";
+  sel.innerHTML = buildOptionsHTML();
+  if (value) sel.value = value;
+  applyShiftSelectStyle(sel);
+  sel.onchange = () => {
+    applyShiftSelectStyle(sel);
+    refreshCellState(sel.closest("td"));
+    updateCounts();
+  };
+  return sel;
+}
+
+function applyShiftSelectStyle(sel) {
+  sel.classList.remove("has-value", "is-block");
+  if (sel.value === BLOCK) {
+    sel.classList.add("is-block");
+  } else if (sel.value !== "") {
+    sel.classList.add("has-value");
+  }
+}
+
+/* Recalcula classes da célula com base nos valores atuais */
+function refreshCellState(cell) {
+  if (!cell) return;
+
+  if (getMode() === "simple") {
+    const sel = cell.querySelector(".cell-select");
+    if (!sel) return;
+    cell.classList.remove("blocked", "assigned");
+    if (sel.value === BLOCK) cell.classList.add("blocked");
+    else if (sel.value !== "") cell.classList.add("assigned");
+  } else {
+    // Avançado: célula fica "fully-blocked" se TODOS os shifts estiverem bloqueados
+    const shifts = cell.querySelectorAll(".shift-select");
+    if (shifts.length === 0) return;
+    const allBlocked = Array.from(shifts).every(s => s.value === BLOCK);
+    cell.classList.toggle("fully-blocked", allBlocked);
+  }
+}
+
 function generateCalendar() {
   const month = parseInt(monthSelect.value);
   const year = parseInt(yearSelect.value);
@@ -1298,6 +2660,8 @@ function generateCalendar() {
     row.appendChild(td);
   }
 
+  const mode = getMode();
+
   for (let day = 1; day <= lastDate; day++) {
     const cell = document.createElement("td");
     const date = new Date(year, month, day);
@@ -1305,27 +2669,45 @@ function generateCalendar() {
 
     if (dow === 0 || dow === 6) cell.classList.add("weekend");
 
-    const options = `
-      <option value="">—</option>
-      <option value="${BLOCK}">Bloqueado</option>
-      ${medicos.map(m => `<option value="${m}">${m}</option>`).join("")}
-    `;
+    const dayDiv = document.createElement("div");
+    dayDiv.className = "day";
+    dayDiv.innerText = day;
+    cell.appendChild(dayDiv);
 
-    cell.innerHTML = `
-      <div class="day">${day}</div>
-      <select class="cell-select">${options}</select>
-    `;
+    if (mode === "simple") {
+      const select = document.createElement("select");
+      select.className = "cell-select";
+      select.innerHTML = buildOptionsHTML();
+      select.onchange = () => {
+        refreshCellState(cell);
+        updateCounts();
+      };
+      cell.appendChild(select);
+    } else {
+      // Modo avançado: 3 turnos com N slots cada
+      const shiftsWrap = document.createElement("div");
+      shiftsWrap.className = "shifts";
+      SHIFTS.forEach(shiftKey => {
+        const shiftDiv = document.createElement("div");
+        shiftDiv.className = "shift";
+        shiftDiv.dataset.shift = shiftKey;
 
-    const select = cell.querySelector("select");
-    select.onchange = () => {
-      cell.classList.remove("blocked", "assigned");
-      if (select.value === BLOCK) {
-        cell.classList.add("blocked");
-      } else if (select.value !== "") {
-        cell.classList.add("assigned");
-      }
-      updateCounts();
-    };
+        const tag = document.createElement("div");
+        tag.className = "shift-tag";
+        tag.innerText = shiftKey;
+        shiftDiv.appendChild(tag);
+
+        const slotsWrap = document.createElement("div");
+        slotsWrap.className = "shift-slots";
+        for (let i = 0; i < slotsPerShift; i++) {
+          slotsWrap.appendChild(buildShiftSelect());
+        }
+        shiftDiv.appendChild(slotsWrap);
+
+        shiftsWrap.appendChild(shiftDiv);
+      });
+      cell.appendChild(shiftsWrap);
+    }
 
     row.appendChild(cell);
 
@@ -1361,37 +2743,166 @@ function updateSignatureState() {
 // Inicializar estado da assinatura
 document.addEventListener("DOMContentLoaded", updateSignatureState);
 
+/* ==================== AJUSTE DE DENSIDADE PARA PDF ==================== */
+/*
+ * Estratégia: aplicar uma classe + variáveis CSS no body que reduzem TUDO
+ * proporcionalmente, baseado na densidade calculada. Sem transform:scale.
+ */
+function applyPdfDensity() {
+  const tbody = document.querySelector("#calendar tbody");
+  const rowCount = tbody ? tbody.children.length : 6;
+  const mode = getMode();
+
+  document.body.classList.remove("pdf-d1", "pdf-d2", "pdf-d3", "pdf-d4");
+
+  if (mode === "simple") {
+    document.body.classList.add(rowCount >= 6 ? "pdf-d2" : "pdf-d1");
+    return;
+  }
+
+  // Modo avançado: medir densidade real
+  let maxFilledInCell = 0;
+  let maxFilledInShift = 0;
+
+  document.querySelectorAll("#calendar tbody td:not(.empty)").forEach(cell => {
+    let cellFilled = 0;
+    SHIFTS.forEach(shiftKey => {
+      const slots = cell.querySelectorAll(`.shift[data-shift="${shiftKey}"] .shift-select`);
+      const filled = Array.from(slots).filter(s => s.value && s.value !== "").length;
+      cellFilled += filled;
+      if (filled > maxFilledInShift) maxFilledInShift = filled;
+    });
+    if (cellFilled > maxFilledInCell) maxFilledInCell = cellFilled;
+  });
+
+  const totalLines = Math.max(maxFilledInCell, 3);
+
+  // Limiares mais generosos - prefere fontes maiores, só reduz quando realmente preciso
+  // Considera: o caso do TESTE5 (15 médicos numa célula) usa pdf-d3 (8px), bem legível
+  let level;
+  if (totalLines >= 18 || (rowCount >= 6 && totalLines >= 14)) {
+    level = 4;
+  } else if (totalLines >= 12 || (rowCount >= 6 && totalLines >= 8)) {
+    level = 3;
+  } else if (totalLines >= 6 || (rowCount >= 6 && totalLines >= 4)) {
+    level = 2;
+  } else {
+    level = 1;
+  }
+
+  document.body.classList.add(`pdf-d${level}`);
+}
+
+function clearPdfDensity() {
+  document.body.classList.remove("pdf-d1", "pdf-d2", "pdf-d3", "pdf-d4");
+}
+
 function exportPDF() {
   // Garantir que o estado da assinatura está correto antes de imprimir
   updateSignatureState();
 
+  // Calcular e aplicar densidade ideal para caber em 1 página
+  applyPdfDensity();
+
+  const mode = getMode();
   const inserted = [];
   const scheduleData = []; // dados estruturados para o vault
 
-  document.querySelectorAll(".cell-select").forEach(sel => {
-    const cell = sel.closest("td");
-    const dayEl = cell?.querySelector(".day");
-    const day = dayEl ? parseInt(dayEl.innerText) : null;
+  if (mode === "simple") {
+    document.querySelectorAll(".cell-select").forEach(sel => {
+      const cell = sel.closest("td");
+      const dayEl = cell?.querySelector(".day");
+      const day = dayEl ? parseInt(dayEl.innerText) : null;
 
-    // Registrar no vault apenas se há valor (ignorar células vazias e empty)
-    if (day && sel.value && sel.value !== "") {
-      scheduleData.push({
-        d: day,
-        v: sel.value === BLOCK ? "__B__" : sel.value
+      if (day && sel.value && sel.value !== "") {
+        scheduleData.push({
+          d: day,
+          v: sel.value === BLOCK ? "__B__" : sel.value
+        });
+      }
+
+      // Pular dias bloqueados - mostrar apenas a hachura no PDF
+      if (sel.value === BLOCK) return;
+
+      if (sel.value && sel.value !== "") {
+        const span = document.createElement("div");
+        span.className = "print-text";
+        span.innerText = sel.value;
+        sel.parentNode.appendChild(span);
+        inserted.push(span);
+      }
+    });
+  } else {
+    // Modo avançado: percorrer células, capturar M/T/N
+    document.querySelectorAll("#calendar tbody td:not(.empty)").forEach(cell => {
+      const dayEl = cell.querySelector(".day");
+      const day = dayEl ? parseInt(dayEl.innerText) : null;
+      if (!day) return;
+
+      SHIFTS.forEach(shiftKey => {
+        const slots = cell.querySelectorAll(`.shift[data-shift="${shiftKey}"] .shift-select`);
+        const values = Array.from(slots).map(s => s.value);
+        const filled = values.filter(v => v !== "");
+
+        if (filled.length === 0) return;
+
+        // Salvar no vault: array de valores por turno (preserva ordem dos slots)
+        scheduleData.push({
+          d: day,
+          sh: shiftKey,
+          v: filled.map(v => v === BLOCK ? "__B__" : v)
+        });
       });
-    }
 
-    // Pular dias bloqueados - mostrar apenas a hachura no PDF
-    if (sel.value === BLOCK) return;
+      // Renderizar conteúdo de impressão (substitui selects)
+      const shiftsWrap = cell.querySelector(".shifts");
+      if (!shiftsWrap) return;
 
-    if (sel.value && sel.value !== "") {
-      const span = document.createElement("div");
-      span.className = "print-text";
-      span.innerText = sel.value;
-      sel.parentNode.appendChild(span);
-      inserted.push(span);
-    }
-  });
+      let cellHasAnyContent = false;
+
+      SHIFTS.forEach(shiftKey => {
+        const shiftEl = shiftsWrap.querySelector(`.shift[data-shift="${shiftKey}"]`);
+        if (!shiftEl) return;
+        const slotsContainer = shiftEl.querySelector(".shift-slots");
+        const slots = slotsContainer.querySelectorAll(".shift-select");
+
+        const printContainer = document.createElement("div");
+        printContainer.className = "shift-slots-print";
+
+        let hasContent = false;
+        slots.forEach(s => {
+          if (s.value === BLOCK) {
+            // Bloqueado: não imprime nada (hachura cobre)
+            hasContent = true; // ainda conta para mostrar a tag
+            return;
+          }
+          if (s.value !== "") {
+            const line = document.createElement("div");
+            line.className = "shift-print-line";
+            line.innerText = s.value;
+            printContainer.appendChild(line);
+            hasContent = true;
+          }
+        });
+
+        if (hasContent) {
+          slotsContainer.appendChild(printContainer);
+          inserted.push(printContainer);
+          cellHasAnyContent = true;
+        } else {
+          // Marcar turno vazio para CSS esconder na impressão
+          shiftEl.classList.add("shift-empty-print");
+          inserted.push({ remove: () => shiftEl.classList.remove("shift-empty-print") });
+        }
+      });
+
+      // Se a célula inteira está vazia, marcar para esconder turnos
+      if (!cellHasAnyContent) {
+        cell.classList.add("cell-empty-print");
+        inserted.push({ remove: () => cell.classList.remove("cell-empty-print") });
+      }
+    });
+  }
 
   // Pegar título, hospital e dados do coordenador
   const titleEl = document.querySelector(".title");
@@ -1402,13 +2913,11 @@ function exportPDF() {
   const titleRaw = (titleEl?.innerText || "Escala Médica").trim();
   const hospitalRaw = (hospitalEl?.innerText || "").trim();
 
-  // Pega nome do coordenador (ignorando zero-width chars do contenteditable)
   const coordName = (sigNameEl?.innerText || "")
     .replace(/[\u200B-\u200D\uFEFF]/g, "")
     .trim();
   const coordLabel = (sigLabelEl?.innerText || "").trim();
 
-  // Sanitizar para nome de arquivo
   const titleText = titleRaw
     .toLowerCase()
     .replace(/\s+/g, "-")
@@ -1419,7 +2928,9 @@ function exportPDF() {
 
   // Construir payload do vault (esteganograma invisível)
   const payload = {
-    v: 1, // versão do schema
+    v: 2, // versão do schema (v2 inclui modo avançado)
+    mode: mode,
+    slots: mode === "advanced" ? slotsPerShift : null,
     t: titleRaw,
     h: hospitalRaw,
     m: parseInt(monthSelect.value),
@@ -1429,7 +2940,6 @@ function exportPDF() {
     c: coordName ? { n: coordName, l: coordLabel } : null
   };
 
-  // Codificar em base64 + delimitadores únicos para extração confiável
   const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
   const vault = document.getElementById("pdfDataVault");
   vault.innerText = `«ESC-START»${encoded}«ESC-END»`;
@@ -1443,6 +2953,7 @@ function exportPDF() {
       inserted.forEach(s => s.remove());
       vault.innerText = "";
       document.title = originalTitle;
+      clearPdfDensity();
     }, 500);
   }, 100);
 }
@@ -1497,16 +3008,34 @@ async function handleImport(event) {
 function showImportModal(payload) {
   const meta = document.getElementById("modalMeta");
   const monthName = months[payload.m] || "?";
-  const totalAtribs = payload.s.filter(x => x.v !== "__B__").length;
-  const totalBloq = payload.s.filter(x => x.v === "__B__").length;
+
+  // Contagem que funciona com payloads v1 e v2
+  let totalAtribs = 0;
+  let totalBloq = 0;
+  payload.s.forEach(entry => {
+    if (entry.sh && Array.isArray(entry.v)) {
+      entry.v.forEach(v => {
+        if (v === "__B__") totalBloq++;
+        else totalAtribs++;
+      });
+    } else {
+      if (entry.v === "__B__") totalBloq++;
+      else totalAtribs++;
+    }
+  });
 
   let coordLine = "";
   if (payload.c && payload.c.n) {
     coordLine = `<div><strong>Coordenador:</strong> ${payload.c.n}${payload.c.l ? " · " + payload.c.l : ""}</div>`;
   }
 
+  const modeLabel = payload.mode === "advanced"
+    ? `Avançado (${payload.slots || 1} médico${(payload.slots || 1) > 1 ? "s" : ""}/turno)`
+    : "Simples";
+
   meta.innerHTML = `
     <div><strong>Origem:</strong> ${payload.t || "Escala"} — ${monthName} / ${payload.y}</div>
+    <div><strong>Modo:</strong> ${modeLabel}</div>
     <div><strong>Médicos:</strong> ${payload.docs.length} (${payload.docs.join(", ") || "—"})</div>
     <div><strong>Plantões registrados:</strong> ${totalAtribs} atribuídos · ${totalBloq} bloqueados</div>
     ${coordLine}
@@ -1559,41 +3088,119 @@ function applyImport() {
     }
   }
 
-  // 2. Construir índice da escala antiga
+  // 2. Detectar modo do payload e ajustar UI se necessário
+  const payloadMode = payload.mode || "simple";
+  const currentMode = getMode();
+
+  let modeChanged = false;
+  if (payloadMode !== currentMode) {
+    const sure = confirm(
+      `O PDF importado está em modo "${payloadMode === "advanced" ? "Avançado" : "Simples"}", ` +
+      `mas o sistema está em modo "${currentMode === "advanced" ? "Avançado" : "Simples"}".\n\n` +
+      `Deseja trocar para o modo do PDF?`
+    );
+    if (sure) {
+      document.documentElement.setAttribute("data-mode", payloadMode);
+      document.getElementById("modeSimpleBtn").classList.toggle("active", payloadMode === "simple");
+      document.getElementById("modeAdvancedBtn").classList.toggle("active", payloadMode === "advanced");
+      modeChanged = true;
+    }
+  }
+
+  // Se modo avançado e payload tem slots, ajustar
+  if (getMode() === "advanced" && payload.slots) {
+    const newSlots = Math.max(1, Math.min(5, payload.slots));
+    if (newSlots !== slotsPerShift) {
+      slotsPerShift = newSlots;
+      document.getElementById("slotsValue").innerText = slotsPerShift;
+      document.getElementById("slotsMinus").disabled = slotsPerShift <= 1;
+      document.getElementById("slotsPlus").disabled = slotsPerShift >= 5;
+      modeChanged = true; // força regeração para refletir novos slots
+    }
+  }
+
+  // CRÍTICO: se mudou modo ou slots, regerar a tabela ANTES de aplicar dados
+  if (modeChanged) {
+    generateCalendar();
+  }
+
+  // 3. Construir índice da escala antiga
   const oldMonth = payload.m;
   const oldYear = payload.y;
+  const importMode = getMode();
 
-  // Mapa: dia(1-31) → valor
+  // No modo simples: oldMap[d] = valor
+  // No modo avançado: oldMap[d] = { M: [v1, v2], T: [...], N: [...] }
   const oldMap = {};
-  payload.s.forEach(({d, v}) => { oldMap[d] = v; });
+  payload.s.forEach(entry => {
+    if (entry.sh) {
+      // entrada avançada
+      if (!oldMap[entry.d]) oldMap[entry.d] = {};
+      oldMap[entry.d][entry.sh] = Array.isArray(entry.v) ? entry.v : [entry.v];
+    } else {
+      // entrada simples
+      oldMap[entry.d] = entry.v;
+    }
+  });
 
-  // 3. Aplicar replicação no mês ATUAL
+  // 4. Aplicar replicação no mês ATUAL
   const newMonth = parseInt(monthSelect.value);
   const newYear = parseInt(yearSelect.value);
   const newLastDay = new Date(newYear, newMonth + 1, 0).getDate();
 
-  // Renderizar tabela primeiro, depois preencher selects
-  renderMedicos();
+  // Atualizar a sidebar com a lista de médicos (sem mexer na tabela já gerada)
+  document.getElementById("counter").innerText = medicos.length;
+  const sidebarDiv = document.getElementById("listaMedicos");
+  if (medicos.length === 0) {
+    sidebarDiv.innerHTML = '<div class="empty-state">Adicione médicos para montar a escala</div>';
+  } else {
+    sidebarDiv.innerHTML = "";
+    medicos.forEach((m, i) => {
+      const el = document.createElement("div");
+      el.className = "medico-item";
+      el.innerHTML = `
+        <span class="medico-name">${m}</span>
+        <span class="medico-count" id="count-${i}">0</span>
+        <button class="btn-remove" onclick="removeMedico(${i})" title="Remover">×</button>
+      `;
+      sidebarDiv.appendChild(el);
+    });
+  }
+
+  // Atualizar as <option> dos selects (com a lista de médicos potencialmente expandida)
+  // Se modeChanged, a tabela já tem as opções corretas
+  if (!modeChanged) {
+    updateCellOptions();
+  }
 
   let applied = 0;
+  const applyEntry = (newDay, sourceData) => {
+    if (importMode === "simple") {
+      // Se o payload é avançado mas estamos em simples, pegar o primeiro valor do M
+      if (typeof sourceData === "object") {
+        const firstShift = sourceData.M || sourceData.T || sourceData.N;
+        if (!firstShift || !firstShift[0]) return false;
+        return setCellValue(newDay, firstShift[0]);
+      }
+      return setCellValue(newDay, sourceData);
+    } else {
+      // modo avançado
+      if (typeof sourceData !== "object") {
+        // payload simples sendo aplicado em avançado: colocar tudo no M (primeiro slot)
+        return setCellShifts(newDay, { M: [sourceData] });
+      }
+      return setCellShifts(newDay, sourceData);
+    }
+  };
 
   if (mode === "exact-date") {
-    // Modo simples: dia X → dia X
     for (let d = 1; d <= newLastDay; d++) {
       if (oldMap[d] !== undefined) {
-        if (setCellValue(d, oldMap[d])) applied++;
+        if (applyEntry(d, oldMap[d])) applied++;
       }
     }
   } else if (mode === "weekday-simple") {
-    // Modo simples por dia da semana: pega o último valor visto para cada DOW
-    // (preserva caso o último plantão de cada dia da semana seja o "fixo")
-    const byDow = {}; // 0-6 → valor
-    Object.keys(oldMap).forEach(d => {
-      const day = parseInt(d);
-      const dow = new Date(oldYear, oldMonth, day).getDay();
-      // Sobrescrever - pegamos o último encontrado iterando em ordem
-    });
-    // Iterar em ordem de dia para garantir que o último vence
+    const byDow = {};
     const sortedDays = Object.keys(oldMap).map(Number).sort((a,b) => a-b);
     sortedDays.forEach(day => {
       const dow = new Date(oldYear, oldMonth, day).getDay();
@@ -1603,12 +3210,11 @@ function applyImport() {
     for (let d = 1; d <= newLastDay; d++) {
       const dow = new Date(newYear, newMonth, d).getDay();
       if (byDow[dow] !== undefined) {
-        if (setCellValue(d, byDow[dow])) applied++;
+        if (applyEntry(d, byDow[dow])) applied++;
       }
     }
   } else {
-    // weekday-ordinal (PADRÃO): preserva 1ª segunda → 1ª segunda etc.
-    // Mapa: "dow-ordinal" → valor (ex: "1-2" = 2ª segunda)
+    // weekday-ordinal (PADRÃO)
     const byOrdinal = {};
     Object.keys(oldMap).map(Number).sort((a,b) => a-b).forEach(day => {
       const dow = new Date(oldYear, oldMonth, day).getDay();
@@ -1621,44 +3227,73 @@ function applyImport() {
       const ordinal = Math.ceil(d / 7);
       const key = `${dow}-${ordinal}`;
       if (byOrdinal[key] !== undefined) {
-        if (setCellValue(d, byOrdinal[key])) applied++;
+        if (applyEntry(d, byOrdinal[key])) applied++;
       }
     }
   }
 
   updateCounts();
+  saveCurrentMonth();
   closeImportModal();
   showToast(`Escala importada: ${applied} ${applied === 1 ? "atribuição aplicada" : "atribuições aplicadas"}`, "success");
 }
 
-/* Aplica um valor a uma célula específica (dia 1-31) */
-function setCellValue(day, value) {
-  // Encontrar a célula com .day == day
+/* Helper: encontra a célula correspondente a um dia */
+function findCellByDay(day) {
   const cells = document.querySelectorAll("#calendar tbody td");
   for (const cell of cells) {
     if (cell.classList.contains("empty")) continue;
     const dayEl = cell.querySelector(".day");
-    if (dayEl && parseInt(dayEl.innerText) === day) {
-      const sel = cell.querySelector(".cell-select");
-      if (!sel) return false;
-
-      const realValue = value === "__B__" ? BLOCK : value;
-
-      // Verificar se o valor existe no select (médico pode ter sido removido)
-      const optionExists = Array.from(sel.options).some(o => o.value === realValue);
-      if (!optionExists) return false;
-
-      sel.value = realValue;
-      cell.classList.remove("blocked", "assigned");
-      if (realValue === BLOCK) {
-        cell.classList.add("blocked");
-      } else if (realValue !== "") {
-        cell.classList.add("assigned");
-      }
-      return true;
-    }
+    if (dayEl && parseInt(dayEl.innerText) === day) return cell;
   }
-  return false;
+  return null;
+}
+
+/* Aplica um valor a uma célula no MODO SIMPLES */
+function setCellValue(day, value) {
+  const cell = findCellByDay(day);
+  if (!cell) return false;
+  const sel = cell.querySelector(".cell-select");
+  if (!sel) return false;
+
+  const realValue = value === "__B__" ? BLOCK : value;
+
+  const optionExists = Array.from(sel.options).some(o => o.value === realValue);
+  if (!optionExists) return false;
+
+  sel.value = realValue;
+  refreshCellState(cell);
+  return true;
+}
+
+/* Aplica turnos a uma célula no MODO AVANÇADO */
+/* shifts: { M: [v1, v2], T: [...], N: [...] } */
+function setCellShifts(day, shifts) {
+  const cell = findCellByDay(day);
+  if (!cell) return false;
+
+  let anyApplied = false;
+
+  SHIFTS.forEach(shiftKey => {
+    if (!shifts[shiftKey]) return;
+    const slots = cell.querySelectorAll(`.shift[data-shift="${shiftKey}"] .shift-select`);
+    const values = shifts[shiftKey];
+
+    slots.forEach((sel, idx) => {
+      if (idx >= values.length) return;
+      const raw = values[idx];
+      const realValue = raw === "__B__" ? BLOCK : raw;
+      const optionExists = Array.from(sel.options).some(o => o.value === realValue);
+      if (optionExists) {
+        sel.value = realValue;
+        applyShiftSelectStyle(sel);
+        anyApplied = true;
+      }
+    });
+  });
+
+  refreshCellState(cell);
+  return anyApplied;
 }
 
 /* Toast simples */
@@ -1685,8 +3320,28 @@ document.addEventListener("keydown", e => {
   }
 });
 
-monthSelect.onchange = generateCalendar;
-yearSelect.onchange = generateCalendar;
+monthSelect.onchange = handleMonthOrYearChange;
+yearSelect.onchange = handleMonthOrYearChange;
+
+// Inicializar estado dos controles de slot
+document.getElementById("slotsMinus").disabled = slotsPerShift <= 1;
+document.getElementById("slotsPlus").disabled = slotsPerShift >= 5;
+
+// Inicializar chave do mês atual
+currentMonthKey = getMonthKey(parseInt(monthSelect.value), parseInt(yearSelect.value));
+
+// Marcar tema atual no color picker
+const initialTheme = document.documentElement.getAttribute("data-theme") || "blue";
+document.querySelectorAll(".theme-opt").forEach(btn => {
+  btn.setAttribute("data-active", btn.dataset.color === initialTheme ? "true" : "false");
+});
+
+// Marcar design padrão e atualizar ícone do botão
+const initialStyle = document.documentElement.getAttribute("data-style") || "default";
+document.querySelectorAll(".design-opt").forEach(btn => {
+  btn.setAttribute("data-active", btn.dataset.style === initialStyle ? "true" : "false");
+});
+updateDesignCurrentIcon(initialStyle);
 
 renderMedicos();
 </script>
